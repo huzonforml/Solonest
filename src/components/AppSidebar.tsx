@@ -1,5 +1,5 @@
 
-import { Calendar, Users, FileText, User, Palette, BarChart3, Home } from "lucide-react";
+import { Calendar, Users, FileText, User, Palette, BarChart3, Home, Receipt, UserCheck, ChevronDown } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -11,25 +11,28 @@ import {
   SidebarMenuItem,
   SidebarHeader,
   SidebarFooter,
+  SidebarMenuSub,
+  SidebarMenuSubItem,
+  SidebarMenuSubButton,
 } from "@/components/ui/sidebar";
 import { useLocation, Link } from "react-router-dom";
 import { UserMenu } from "./UserMenu";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { useState } from "react";
 
-const menuItems = [
+const mainMenuItems = [
   {
     title: "Home",
     url: "/home",
     icon: Home,
   },
+];
+
+const crmMenuItems = [
   {
     title: "Dashboard",
     url: "/dashboard",
     icon: BarChart3,
-  },
-  {
-    title: "Appointments",
-    url: "/appointments",
-    icon: Calendar,
   },
   {
     title: "Leads",
@@ -37,10 +40,28 @@ const menuItems = [
     icon: Users,
   },
   {
+    title: "Clients",
+    url: "/clients",
+    icon: UserCheck,
+  },
+  {
+    title: "Appointments",
+    url: "/appointments",
+    icon: Calendar,
+  },
+  {
     title: "Contracts",
     url: "/contracts",
     icon: FileText,
   },
+  {
+    title: "Invoices",
+    url: "/invoices",
+    icon: Receipt,
+  },
+];
+
+const toolsMenuItems = [
   {
     title: "Portfolio Maker",
     url: "/portfolio-maker",
@@ -55,8 +76,11 @@ const menuItems = [
 
 export function AppSidebar() {
   const location = useLocation();
+  const [isCRMOpen, setIsCRMOpen] = useState(true);
+  const [isToolsOpen, setIsToolsOpen] = useState(false);
 
   const handleLogoError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    console.log('Logo failed to load, showing fallback');
     e.currentTarget.style.display = 'none';
     const fallback = e.currentTarget.nextElementSibling as HTMLElement;
     if (fallback) {
@@ -75,6 +99,7 @@ export function AppSidebar() {
                 alt="Solonest Logo" 
                 className="w-8 h-8 object-contain"
                 onError={handleLogoError}
+                onLoad={() => console.log('Logo loaded successfully')}
               />
               <div 
                 className="w-8 h-8 bg-neo-600 text-neo-100 rounded-full flex items-center justify-center font-bold text-lg hidden"
@@ -89,13 +114,14 @@ export function AppSidebar() {
         </div>
       </SidebarHeader>
       <SidebarContent>
+        {/* Main Menu */}
         <SidebarGroup>
           <SidebarGroupLabel className="text-neo-600 font-semibold px-6 py-2">
             Main Menu
           </SidebarGroupLabel>
           <SidebarGroupContent className="px-4">
             <SidebarMenu>
-              {menuItems.map((item) => (
+              {mainMenuItems.map((item) => (
                 <SidebarMenuItem key={item.title} className="mb-2">
                   <SidebarMenuButton
                     asChild
@@ -114,6 +140,76 @@ export function AppSidebar() {
               ))}
             </SidebarMenu>
           </SidebarGroupContent>
+        </SidebarGroup>
+
+        {/* CRM Section */}
+        <SidebarGroup>
+          <Collapsible open={isCRMOpen} onOpenChange={setIsCRMOpen}>
+            <SidebarGroupLabel className="text-neo-600 font-semibold px-6 py-2">
+              <CollapsibleTrigger className="flex items-center justify-between w-full hover:text-neo-800">
+                CRM
+                <ChevronDown className={`h-4 w-4 transition-transform ${isCRMOpen ? 'rotate-180' : ''}`} />
+              </CollapsibleTrigger>
+            </SidebarGroupLabel>
+            <CollapsibleContent>
+              <SidebarGroupContent className="px-4">
+                <SidebarMenu>
+                  {crmMenuItems.map((item) => (
+                    <SidebarMenuItem key={item.title} className="mb-2">
+                      <SidebarMenuButton
+                        asChild
+                        className={`neo-button p-3 w-full justify-start gap-3 ${
+                          location.pathname === item.url
+                            ? "neo-card-pressed text-neo-800 font-semibold"
+                            : "text-neo-600 hover:text-neo-800 hover:bg-neo-300"
+                        }`}
+                      >
+                        <Link to={item.url}>
+                          <item.icon size={20} />
+                          <span>{item.title}</span>
+                        </Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  ))}
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </CollapsibleContent>
+          </Collapsible>
+        </SidebarGroup>
+
+        {/* Tools Section */}
+        <SidebarGroup>
+          <Collapsible open={isToolsOpen} onOpenChange={setIsToolsOpen}>
+            <SidebarGroupLabel className="text-neo-600 font-semibold px-6 py-2">
+              <CollapsibleTrigger className="flex items-center justify-between w-full hover:text-neo-800">
+                Tools
+                <ChevronDown className={`h-4 w-4 transition-transform ${isToolsOpen ? 'rotate-180' : ''}`} />
+              </CollapsibleTrigger>
+            </SidebarGroupLabel>
+            <CollapsibleContent>
+              <SidebarGroupContent className="px-4">
+                <SidebarMenu>
+                  {toolsMenuItems.map((item) => (
+                    <SidebarMenuItem key={item.title} className="mb-2">
+                      <SidebarMenuButton
+                        asChild
+                        className={`neo-button p-3 w-full justify-start gap-3 ${
+                          location.pathname === item.url
+                            ? "neo-card-pressed text-neo-800 font-semibold"
+                            : "text-neo-600 hover:text-neo-800 hover:bg-neo-300"
+                        }`}
+                      >
+                        <Link to={item.url}>
+                          <item.icon size={20} />
+                          <span>{item.title}</span>
+                        </Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  ))}
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </CollapsibleContent>
+          </Collapsible>
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>

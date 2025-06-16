@@ -1,17 +1,19 @@
-
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from "recharts";
-import { Calendar, Users, FileText, TrendingUp, DollarSign, Clock } from "lucide-react";
+import { Calendar, Users, FileText, TrendingUp, DollarSign, Clock, UserCheck, Receipt, AlertTriangle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { useCRM } from "../contexts/CRMContext";
 
 const Dashboard = () => {
-  const { leads, appointments, contracts } = useCRM();
+  const { leads, appointments, contracts, clients, invoices } = useCRM();
 
   // Analytics data
   const leadsByStatus = [
-    { name: 'Hot', value: leads.filter(l => l.status === 'Hot').length, color: '#ef4444' },
-    { name: 'Warm', value: leads.filter(l => l.status === 'Warm').length, color: '#f97316' },
-    { name: 'Cold', value: leads.filter(l => l.status === 'Cold').length, color: '#3b82f6' }
+    { name: 'New Leads', value: leads.filter(l => l.status === 'New Leads').length, color: '#3b82f6' },
+    { name: 'Qualified', value: leads.filter(l => l.status === 'Qualified').length, color: '#10b981' },
+    { name: 'Proposal Sent', value: leads.filter(l => l.status === 'Proposal Sent').length, color: '#f59e0b' },
+    { name: 'Negotiation', value: leads.filter(l => l.status === 'Negotiation').length, color: '#f97316' },
+    { name: 'Closed', value: leads.filter(l => l.status === 'Closed').length, color: '#8b5cf6' }
   ];
 
   const monthlyData = [
@@ -32,8 +34,22 @@ const Dashboard = () => {
     { month: 'Jun', revenue: 32000 }
   ];
 
-  const totalRevenue = contracts.reduce((sum, contract) => sum + parseFloat(contract.value.replace('$', '').replace(',', '')), 0);
-  const avgDealSize = contracts.length > 0 ? totalRevenue / contracts.length : 0;
+  const totalRevenue = contracts.reduce((sum, contract) => sum + parseFloat(contract.value.replace(/[^\d.]/g, '')), 0);
+  const totalInvoices = invoices.reduce((sum, invoice) => sum + parseFloat(invoice.amount.replace(/[^\d.]/g, '')), 0);
+  const paidInvoices = invoices.filter(inv => inv.status === 'Paid').reduce((sum, invoice) => sum + parseFloat(invoice.amount.replace(/[^\d.]/g, '')), 0);
+  const overdueInvoices = invoices.filter(inv => inv.status === 'Overdue').length;
+
+  // Upcoming activities (next 7 days)
+  const upcomingAppointments = appointments
+    .filter(apt => new Date(apt.date) >= new Date() && new Date(apt.date) <= new Date(Date.now() + 7 * 24 * 60 * 60 * 1000))
+    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+    .slice(0, 5);
+
+  // Recent leads (last 30 days)
+  const recentLeads = leads
+    .filter(lead => new Date(lead.createdAt) >= new Date(Date.now() - 30 * 24 * 60 * 60 * 1000))
+    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+    .slice(0, 5);
 
   return (
     <div className="space-y-6">
@@ -47,8 +63,8 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {/* Enhanced KPI Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
         <Card className="neo-card">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-neo-600">Total Leads</CardTitle>
@@ -57,6 +73,17 @@ const Dashboard = () => {
           <CardContent>
             <div className="text-2xl font-bold text-neo-700">{leads.length}</div>
             <p className="text-xs text-neo-500">Active prospects</p>
+          </CardContent>
+        </Card>
+
+        <Card className="neo-card">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium text-neo-600">Clients</CardTitle>
+            <UserCheck className="h-4 w-4 text-neo-500" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-neo-700">{clients.length}</div>
+            <p className="text-xs text-neo-500">Active clients</p>
           </CardContent>
         </Card>
 
@@ -88,8 +115,44 @@ const Dashboard = () => {
             <DollarSign className="h-4 w-4 text-neo-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-neo-700">${totalRevenue.toLocaleString()}</div>
+            <div className="text-2xl font-bold text-neo-700">AED {totalRevenue.toLocaleString()}</div>
             <p className="text-xs text-neo-500">Total contract value</p>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Invoice Summary Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <Card className="neo-card">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium text-neo-600">Total Invoiced</CardTitle>
+            <Receipt className="h-4 w-4 text-neo-500" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-xl font-bold text-neo-700">AED {totalInvoices.toLocaleString()}</div>
+            <p className="text-xs text-neo-500">{invoices.length} invoices</p>
+          </CardContent>
+        </Card>
+
+        <Card className="neo-card">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium text-neo-600">Paid Invoices</CardTitle>
+            <DollarSign className="h-4 w-4 text-green-500" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-xl font-bold text-green-600">AED {paidInvoices.toLocaleString()}</div>
+            <p className="text-xs text-neo-500">Received payments</p>
+          </CardContent>
+        </Card>
+
+        <Card className="neo-card">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium text-neo-600">Overdue</CardTitle>
+            <AlertTriangle className="h-4 w-4 text-red-500" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-xl font-bold text-red-600">{overdueInvoices}</div>
+            <p className="text-xs text-neo-500">Need attention</p>
           </CardContent>
         </Card>
       </div>
@@ -156,30 +219,70 @@ const Dashboard = () => {
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="month" />
               <YAxis />
-              <Tooltip formatter={(value) => [`$${value.toLocaleString()}`, 'Revenue']} />
+              <Tooltip formatter={(value) => [`AED ${value.toLocaleString()}`, 'Revenue']} />
               <Line type="monotone" dataKey="revenue" stroke="#8b5cf6" strokeWidth={3} />
             </LineChart>
           </ResponsiveContainer>
         </CardContent>
       </Card>
 
-      {/* Recent Activity */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      {/* Activity Sections */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <Card className="neo-card">
           <CardHeader>
-            <CardTitle className="text-neo-700">Recent Appointments</CardTitle>
+            <CardTitle className="text-neo-700 flex items-center gap-2">
+              <Clock className="w-5 h-5" />
+              Upcoming Activities
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              {appointments.slice(0, 5).map((appointment) => (
-                <div key={appointment.id} className="flex items-center justify-between p-3 neo-card">
+              {upcomingAppointments.length > 0 ? (
+                upcomingAppointments.map((appointment) => (
+                  <div key={appointment.id} className="flex items-center justify-between p-3 neo-card">
+                    <div>
+                      <p className="font-medium text-neo-700">{appointment.client}</p>
+                      <p className="text-sm text-neo-500">{appointment.type}</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-sm font-medium text-neo-600">{appointment.date}</p>
+                      <p className="text-xs text-neo-500">{appointment.time}</p>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <p className="text-neo-500 text-center py-4">No upcoming activities</p>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="neo-card">
+          <CardHeader>
+            <CardTitle className="text-neo-700 flex items-center gap-2">
+              <Users className="w-5 h-5" />
+              Recent Leads
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3">
+              {recentLeads.map((lead) => (
+                <div key={lead.id} className="flex items-center justify-between p-3 neo-card">
                   <div>
-                    <p className="font-medium text-neo-700">{appointment.client}</p>
-                    <p className="text-sm text-neo-500">{appointment.type}</p>
+                    <p className="font-medium text-neo-700">{lead.name}</p>
+                    <p className="text-sm text-neo-500">{lead.company}</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm font-medium text-neo-600">{appointment.date}</p>
-                    <p className="text-xs text-neo-500">{appointment.time}</p>
+                    <p className="text-sm font-medium text-neo-600">{lead.value}</p>
+                    <Badge className={`text-xs ${
+                      lead.status === 'New Leads' ? 'bg-blue-100 text-blue-800' : 
+                      lead.status === 'Qualified' ? 'bg-green-100 text-green-800' :
+                      lead.status === 'Proposal Sent' ? 'bg-yellow-100 text-yellow-800' :
+                      lead.status === 'Negotiation' ? 'bg-orange-100 text-orange-800' :
+                      'bg-purple-100 text-purple-800'
+                    }`}>
+                      {lead.status}
+                    </Badge>
                   </div>
                 </div>
               ))}
@@ -189,27 +292,29 @@ const Dashboard = () => {
 
         <Card className="neo-card">
           <CardHeader>
-            <CardTitle className="text-neo-700">Top Leads</CardTitle>
+            <CardTitle className="text-neo-700 flex items-center gap-2">
+              <Receipt className="w-5 h-5" />
+              Invoice Summary
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              {leads.slice(0, 5).map((lead) => (
-                <div key={lead.id} className="flex items-center justify-between p-3 neo-card">
+              {invoices.slice(0, 5).map((invoice) => (
+                <div key={invoice.id} className="flex items-center justify-between p-3 neo-card">
                   <div>
-                    <p className="font-medium text-neo-700">{lead.name}</p>
-                    <p className="text-sm text-neo-500">{lead.source}</p>
+                    <p className="font-medium text-neo-700">{invoice.invoiceNumber}</p>
+                    <p className="text-sm text-neo-500">Due: {new Date(invoice.dueDate).toLocaleDateString()}</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm font-medium text-neo-600">{lead.value}</p>
-                    <span className={`text-xs px-2 py-1 rounded-full ${
-                      lead.status === 'Hot' 
-                        ? 'bg-red-100 text-red-800' 
-                        : lead.status === 'Warm'
-                        ? 'bg-orange-100 text-orange-800'
-                        : 'bg-blue-100 text-blue-800'
+                    <p className="text-sm font-medium text-neo-600">{invoice.amount}</p>
+                    <Badge className={`text-xs ${
+                      invoice.status === 'Paid' ? 'bg-green-100 text-green-800' :
+                      invoice.status === 'Sent' ? 'bg-blue-100 text-blue-800' :
+                      invoice.status === 'Overdue' ? 'bg-red-100 text-red-800' :
+                      'bg-gray-100 text-gray-800'
                     }`}>
-                      {lead.status}
-                    </span>
+                      {invoice.status}
+                    </Badge>
                   </div>
                 </div>
               ))}

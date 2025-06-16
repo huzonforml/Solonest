@@ -5,47 +5,40 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Lead, LeadStatus, useCRM } from "../contexts/CRMContext";
+import { Client, useCRM } from "../contexts/CRMContext";
 import { toast } from "sonner";
 
-interface AddLeadFormProps {
+interface AddClientFormProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const statusOptions: LeadStatus[] = ['New Leads', 'Qualified', 'Proposal Sent', 'Negotiation', 'Closed'];
-
-export function AddLeadForm({ isOpen, onClose }: AddLeadFormProps) {
-  const { addLead } = useCRM();
+export function AddClientForm({ isOpen, onClose }: AddClientFormProps) {
+  const { addClient } = useCRM();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     company: '',
-    value: '',
-    source: '',
-    status: 'New Leads' as LeadStatus,
-    notes: ''
+    address: ''
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.name || !formData.email || !formData.value) {
+    if (!formData.name || !formData.email || !formData.company) {
       toast.error("Please fill in all required fields");
       return;
     }
 
-    const newLead: Lead = {
+    const newClient: Client = {
       id: Date.now(),
       ...formData,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
+      createdAt: new Date().toISOString()
     };
 
-    addLead(newLead);
-    toast.success("Lead added successfully!");
+    addClient(newClient);
+    toast.success("Client added successfully!");
     
     // Reset form
     setFormData({
@@ -53,10 +46,7 @@ export function AddLeadForm({ isOpen, onClose }: AddLeadFormProps) {
       email: '',
       phone: '',
       company: '',
-      value: '',
-      source: '',
-      status: 'New Leads',
-      notes: ''
+      address: ''
     });
     
     onClose();
@@ -66,7 +56,7 @@ export function AddLeadForm({ isOpen, onClose }: AddLeadFormProps) {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-xl font-bold text-neo-700">Add New Lead</DialogTitle>
+          <DialogTitle className="text-xl font-bold text-neo-700">Add New Client</DialogTitle>
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -101,67 +91,28 @@ export function AddLeadForm({ isOpen, onClose }: AddLeadFormProps) {
           </div>
 
           <div>
-            <Label htmlFor="company">Company</Label>
+            <Label htmlFor="company">Company *</Label>
             <Input
               id="company"
               value={formData.company}
               onChange={(e) => setFormData(prev => ({ ...prev, company: e.target.value }))}
-            />
-          </div>
-
-          <div>
-            <Label htmlFor="value">Value (AED) *</Label>
-            <Input
-              id="value"
-              placeholder="AED 10,000"
-              value={formData.value}
-              onChange={(e) => setFormData(prev => ({ ...prev, value: e.target.value }))}
               required
             />
           </div>
 
           <div>
-            <Label htmlFor="source">Source</Label>
-            <Input
-              id="source"
-              placeholder="Website, LinkedIn, Referral, etc."
-              value={formData.source}
-              onChange={(e) => setFormData(prev => ({ ...prev, source: e.target.value }))}
-            />
-          </div>
-
-          <div>
-            <Label htmlFor="status">Status</Label>
-            <Select 
-              value={formData.status} 
-              onValueChange={(value: LeadStatus) => setFormData(prev => ({ ...prev, status: value }))}
-            >
-              <SelectTrigger>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {statusOptions.map((status) => (
-                  <SelectItem key={status} value={status}>
-                    {status}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div>
-            <Label htmlFor="notes">Notes</Label>
+            <Label htmlFor="address">Address</Label>
             <Textarea
-              id="notes"
-              value={formData.notes}
-              onChange={(e) => setFormData(prev => ({ ...prev, notes: e.target.value }))}
+              id="address"
+              value={formData.address}
+              onChange={(e) => setFormData(prev => ({ ...prev, address: e.target.value }))}
               rows={3}
             />
           </div>
 
           <div className="flex gap-2 pt-4">
             <Button type="submit" className="neo-button bg-neo-600 text-neo-100 hover:bg-neo-700 flex-1">
-              Add Lead
+              Add Client
             </Button>
             <Button type="button" variant="outline" onClick={onClose}>
               Cancel

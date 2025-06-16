@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -13,6 +12,8 @@ import Contracts from "./pages/Contracts";
 import PortfolioMaker from "./pages/PortfolioMaker";
 import Dashboard from "./pages/Dashboard";
 import WebsiteMaker from "./pages/WebsiteMaker";
+import Clients from "./pages/Clients";
+import Invoices from "./pages/Invoices";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
@@ -33,7 +34,9 @@ const App = () => (
             <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
             <Route path="/appointments" element={<Layout><Appointments /></Layout>} />
             <Route path="/leads" element={<Layout><Leads /></Layout>} />
+            <Route path="/clients" element={<Layout><Clients /></Layout>} />
             <Route path="/contracts" element={<Layout><Contracts /></Layout>} />
+            <Route path="/invoices" element={<Layout><Invoices /></Layout>} />
             <Route path="/portfolio-maker" element={<Layout><PortfolioMaker /></Layout>} />
             <Route path="/website-maker" element={<Layout><WebsiteMaker /></Layout>} />
             <Route path="/register" element={<Register />} />
