@@ -1,37 +1,11 @@
 
 import { Users } from "lucide-react";
-
-const leads = [
-  {
-    id: 1,
-    name: "Alice Cooper",
-    email: "alice.cooper@email.com",
-    phone: "+1 (555) 123-4567",
-    status: "Hot",
-    source: "Website",
-    value: "$15,000"
-  },
-  {
-    id: 2,
-    name: "Bob Wilson",
-    email: "bob.wilson@email.com",
-    phone: "+1 (555) 987-6543",
-    status: "Warm",
-    source: "Referral",
-    value: "$8,500"
-  },
-  {
-    id: 3,
-    name: "Carol Brown",
-    email: "carol.brown@email.com",
-    phone: "+1 (555) 456-7890",
-    status: "Cold",
-    source: "LinkedIn",
-    value: "$12,000"
-  }
-];
+import { useCRM } from "../contexts/CRMContext";
+import AddLeadForm from "../components/AddLeadForm";
 
 const Leads = () => {
+  const { leads, addLead } = useCRM();
+
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-3 mb-8">
@@ -47,9 +21,7 @@ const Leads = () => {
       <div className="neo-card p-6">
         <div className="flex justify-between items-center mb-6">
           <h3 className="text-xl font-semibold text-neo-700">Active Leads</h3>
-          <button className="neo-button px-6 py-2 text-neo-700 font-medium">
-            Add Lead
-          </button>
+          <AddLeadForm onAddLead={addLead} />
         </div>
 
         <div className="space-y-4">

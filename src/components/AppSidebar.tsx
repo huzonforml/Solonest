@@ -1,5 +1,4 @@
-
-import { Calendar, Users, FileText } from "lucide-react";
+import { Calendar, Users, FileText, User } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -28,6 +27,11 @@ const menuItems = [
     title: "Contracts",
     url: "/contracts",
     icon: FileText,
+  },
+  {
+    title: "Portfolio Maker",
+    url: "/portfolio-maker",
+    icon: User,
   },
 ];
 

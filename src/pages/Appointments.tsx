@@ -1,34 +1,11 @@
 
 import { Calendar } from "lucide-react";
-
-const appointments = [
-  {
-    id: 1,
-    client: "John Smith",
-    date: "2024-06-17",
-    time: "10:00 AM",
-    status: "Confirmed",
-    type: "Consultation"
-  },
-  {
-    id: 2,
-    client: "Sarah Johnson",
-    date: "2024-06-17",
-    time: "2:00 PM",
-    status: "Pending",
-    type: "Follow-up"
-  },
-  {
-    id: 3,
-    client: "Mike Davis",
-    date: "2024-06-18",
-    time: "11:30 AM",
-    status: "Confirmed",
-    type: "Consultation"
-  }
-];
+import { useCRM } from "../contexts/CRMContext";
+import AddAppointmentForm from "../components/AddAppointmentForm";
 
 const Appointments = () => {
+  const { appointments, leads, addAppointment } = useCRM();
+
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-3 mb-8">
@@ -44,9 +21,7 @@ const Appointments = () => {
       <div className="neo-card p-6">
         <div className="flex justify-between items-center mb-6">
           <h3 className="text-xl font-semibold text-neo-700">Upcoming Appointments</h3>
-          <button className="neo-button px-6 py-2 text-neo-700 font-medium">
-            New Appointment
-          </button>
+          <AddAppointmentForm leads={leads} onAddAppointment={addAppointment} />
         </div>
 
         <div className="space-y-4">

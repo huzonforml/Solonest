@@ -1,37 +1,11 @@
 
 import { FileText } from "lucide-react";
-
-const contracts = [
-  {
-    id: 1,
-    title: "Service Agreement - TechCorp",
-    client: "TechCorp Solutions",
-    value: "$25,000",
-    status: "Active",
-    startDate: "2024-01-15",
-    endDate: "2024-12-15"
-  },
-  {
-    id: 2,
-    title: "Maintenance Contract - StartupXYZ",
-    client: "StartupXYZ Inc",
-    value: "$18,500",
-    status: "Pending",
-    startDate: "2024-06-01",
-    endDate: "2025-06-01"
-  },
-  {
-    id: 3,
-    title: "Consulting Agreement - BigCorp",
-    client: "BigCorp Enterprise",
-    value: "$45,000",
-    status: "Draft",
-    startDate: "2024-07-01",
-    endDate: "2024-12-31"
-  }
-];
+import { useCRM } from "../contexts/CRMContext";
+import AddContractForm from "../components/AddContractForm";
 
 const Contracts = () => {
+  const { contracts, leads, addContract } = useCRM();
+
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-3 mb-8">
@@ -47,9 +21,7 @@ const Contracts = () => {
       <div className="neo-card p-6">
         <div className="flex justify-between items-center mb-6">
           <h3 className="text-xl font-semibold text-neo-700">Contract Overview</h3>
-          <button className="neo-button px-6 py-2 text-neo-700 font-medium">
-            New Contract
-          </button>
+          <AddContractForm leads={leads} onAddContract={addContract} />
         </div>
 
         <div className="space-y-4">

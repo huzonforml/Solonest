@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -10,26 +9,30 @@ import Appointments from "./pages/Appointments";
 import Leads from "./pages/Leads";
 import Contracts from "./pages/Contracts";
 import NotFound from "./pages/NotFound";
+import { CRMProvider } from "./contexts/CRMContext";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/appointments" element={<Appointments />} />
-            <Route path="/leads" element={<Leads />} />
-            <Route path="/contracts" element={<Contracts />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Layout>
-      </BrowserRouter>
-    </TooltipProvider>
+    <CRMProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/appointments" element={<Appointments />} />
+              <Route path="/leads" element={<Leads />} />
+              <Route path="/contracts" element={<Contracts />} />
+              <Route path="/portfolio-maker" element={<PortfolioMaker />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Layout>
+        </BrowserRouter>
+      </TooltipProvider>
+    </CRMProvider>
   </QueryClientProvider>
 );
 
