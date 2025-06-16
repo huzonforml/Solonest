@@ -56,6 +56,14 @@ const menuItems = [
 export function AppSidebar() {
   const location = useLocation();
 
+  const handleLogoError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    e.currentTarget.style.display = 'none';
+    const fallback = e.currentTarget.nextElementSibling as HTMLElement;
+    if (fallback) {
+      fallback.style.display = 'flex';
+    }
+  };
+
   return (
     <Sidebar className="bg-neo-200 border-r border-neo-300">
       <SidebarHeader className="p-6">
@@ -63,10 +71,17 @@ export function AppSidebar() {
           <div className="flex items-center justify-center gap-3 mb-2">
             <div className="w-10 h-10 flex items-center justify-center">
               <img 
-                src="/lovable-uploads/42ad91fe-1b2e-4f6b-9094-53f2e8b2a1e7.png" 
+                src="/lovable-uploads/0ed1d3e5-24a0-4aec-96eb-46db7da4408c.png" 
                 alt="Solonest Logo" 
                 className="w-8 h-8 object-contain"
+                onError={handleLogoError}
               />
+              <div 
+                className="w-8 h-8 bg-neo-600 text-neo-100 rounded-full flex items-center justify-center font-bold text-lg hidden"
+                style={{ display: 'none' }}
+              >
+                S
+              </div>
             </div>
             <h2 className="text-xl font-bold text-neo-700">Solonest</h2>
           </div>
