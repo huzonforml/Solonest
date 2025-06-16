@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,12 +62,29 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				neo: {
+					100: '#f5f5f5',
+					200: '#e8e8e8',
+					300: '#d1d1d1',
+					400: '#9a9a9a',
+					500: '#6b6b6b',
+					600: '#4a4a4a',
+					700: '#2d2d2d',
+					800: '#1a1a1a',
+					900: '#0f0f0f'
 				}
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
+			},
+			boxShadow: {
+				'neo-inset': 'inset 6px 6px 12px #d1d1d1, inset -6px -6px 12px #ffffff',
+				'neo-outset': '6px 6px 12px #d1d1d1, -6px -6px 12px #ffffff',
+				'neo-flat': '2px 2px 4px #d1d1d1, -2px -2px 4px #ffffff',
+				'neo-pressed': 'inset 2px 2px 4px #d1d1d1, inset -2px -2px 4px #ffffff'
 			},
 			keyframes: {
 				'accordion-down': {
