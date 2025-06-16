@@ -1,4 +1,5 @@
-import { Calendar, Users, FileText, User } from "lucide-react";
+
+import { Calendar, Users, FileText, User, Palette, BarChart3 } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -9,10 +10,17 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarHeader,
+  SidebarFooter,
 } from "@/components/ui/sidebar";
 import { useLocation, Link } from "react-router-dom";
+import { UserMenu } from "./UserMenu";
 
 const menuItems = [
+  {
+    title: "Dashboard",
+    url: "/dashboard",
+    icon: BarChart3,
+  },
   {
     title: "Appointments",
     url: "/appointments",
@@ -32,6 +40,11 @@ const menuItems = [
     title: "Portfolio Maker",
     url: "/portfolio-maker",
     icon: User,
+  },
+  {
+    title: "Website Maker",
+    url: "/website-maker",
+    icon: Palette,
   },
 ];
 
@@ -74,6 +87,9 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+      <SidebarFooter>
+        <UserMenu />
+      </SidebarFooter>
     </Sidebar>
   );
 }
