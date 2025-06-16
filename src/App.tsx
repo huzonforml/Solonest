@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -8,6 +9,7 @@ import Index from "./pages/Index";
 import Appointments from "./pages/Appointments";
 import Leads from "./pages/Leads";
 import Contracts from "./pages/Contracts";
+import PortfolioMaker from "./pages/PortfolioMaker";
 import NotFound from "./pages/NotFound";
 import { CRMProvider } from "./contexts/CRMContext";
 
