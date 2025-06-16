@@ -56,11 +56,9 @@ export function AppSidebar() {
       <SidebarHeader className="p-6">
         <div className="neo-card p-4 text-center">
           <div className="flex items-center justify-center gap-3 mb-2">
-            <img 
-              src="/lovable-uploads/b78b3e7d-ba50-4a64-b87e-0ff0f5ad9a3e.png" 
-              alt="Solonest Logo" 
-              className="w-8 h-8 object-contain"
-            />
+            <div className="w-8 h-8 bg-neo-600 rounded-full flex items-center justify-center">
+              <span className="text-neo-100 font-bold text-sm">S</span>
+            </div>
             <h2 className="text-xl font-bold text-neo-700">Solonest</h2>
           </div>
           <p className="text-sm text-neo-500 mt-1">Business Management Suite</p>
@@ -80,7 +78,7 @@ export function AppSidebar() {
                     className={`neo-button p-3 w-full justify-start gap-3 ${
                       location.pathname === item.url
                         ? "neo-card-pressed text-neo-800 font-semibold"
-                        : "text-neo-600 hover:text-neo-800"
+                        : "text-neo-600 hover:text-neo-800 hover:bg-neo-300"
                     }`}
                   >
                     <Link to={item.url}>

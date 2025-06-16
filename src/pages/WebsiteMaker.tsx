@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
+import { ImageWidget } from "@/components/ImageWidget";
 
 interface Element {
   id: string;
@@ -96,27 +97,27 @@ const WebsiteMaker = () => {
         {/* Sidebar */}
         <div className="neo-card p-4 space-y-4">
           <Tabs defaultValue="elements" className="w-full">
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="elements">Elements</TabsTrigger>
-              <TabsTrigger value="style">Style</TabsTrigger>
+            <TabsList className="grid w-full grid-cols-2 neo-card p-1">
+              <TabsTrigger value="elements" className="neo-button text-neo-700 data-[state=active]:neo-card-pressed data-[state=active]:text-neo-800">Elements</TabsTrigger>
+              <TabsTrigger value="style" className="neo-button text-neo-700 data-[state=active]:neo-card-pressed data-[state=active]:text-neo-800">Style</TabsTrigger>
             </TabsList>
             
             <TabsContent value="elements" className="space-y-3">
               <h3 className="font-semibold text-neo-700">Add Elements</h3>
               <div className="grid grid-cols-2 gap-2">
-                <Button onClick={() => addElement('text')} className="neo-button p-3 flex flex-col gap-1">
+                <Button onClick={() => addElement('text')} className="neo-button p-3 flex flex-col gap-1 text-neo-700 hover:text-neo-800">
                   <Type size={20} />
                   <span className="text-xs">Text</span>
                 </Button>
-                <Button onClick={() => addElement('button')} className="neo-button p-3 flex flex-col gap-1">
+                <Button onClick={() => addElement('button')} className="neo-button p-3 flex flex-col gap-1 text-neo-700 hover:text-neo-800">
                   <Square size={20} />
                   <span className="text-xs">Button</span>
                 </Button>
-                <Button onClick={() => addElement('image')} className="neo-button p-3 flex flex-col gap-1">
+                <Button onClick={() => addElement('image')} className="neo-button p-3 flex flex-col gap-1 text-neo-700 hover:text-neo-800">
                   <Image size={20} />
                   <span className="text-xs">Image</span>
                 </Button>
-                <Button onClick={() => addElement('container')} className="neo-button p-3 flex flex-col gap-1">
+                <Button onClick={() => addElement('container')} className="neo-button p-3 flex flex-col gap-1 text-neo-700 hover:text-neo-800">
                   <Circle size={20} />
                   <span className="text-xs">Container</span>
                 </Button>
@@ -126,7 +127,7 @@ const WebsiteMaker = () => {
                 <h4 className="font-medium text-neo-600">Colors</h4>
                 <div className="space-y-2">
                   <div>
-                    <Label htmlFor="primary">Primary Color</Label>
+                    <Label htmlFor="primary" className="text-neo-700">Primary Color</Label>
                     <Input
                       id="primary"
                       type="color"
@@ -136,7 +137,7 @@ const WebsiteMaker = () => {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="secondary">Secondary Color</Label>
+                    <Label htmlFor="secondary" className="text-neo-700">Secondary Color</Label>
                     <Input
                       id="secondary"
                       type="color"
@@ -146,7 +147,7 @@ const WebsiteMaker = () => {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="text">Text Color</Label>
+                    <Label htmlFor="text" className="text-neo-700">Text Color</Label>
                     <Input
                       id="text"
                       type="color"
@@ -164,7 +165,7 @@ const WebsiteMaker = () => {
                 <div className="space-y-3">
                   <h3 className="font-semibold text-neo-700">Element Style</h3>
                   <div>
-                    <Label>Content</Label>
+                    <Label className="text-neo-700">Content</Label>
                     <Input
                       value={selectedEl.content}
                       onChange={(e) => updateElement(selectedEl.id, { content: e.target.value })}
@@ -172,7 +173,7 @@ const WebsiteMaker = () => {
                     />
                   </div>
                   <div>
-                    <Label>Font Size</Label>
+                    <Label className="text-neo-700">Font Size</Label>
                     <Select 
                       value={selectedEl.style.fontSize} 
                       onValueChange={(value) => updateElement(selectedEl.id, { 
@@ -182,18 +183,18 @@ const WebsiteMaker = () => {
                       <SelectTrigger className="neo-input">
                         <SelectValue />
                       </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="12px">12px</SelectItem>
-                        <SelectItem value="14px">14px</SelectItem>
-                        <SelectItem value="16px">16px</SelectItem>
-                        <SelectItem value="18px">18px</SelectItem>
-                        <SelectItem value="24px">24px</SelectItem>
-                        <SelectItem value="32px">32px</SelectItem>
+                      <SelectContent className="neo-card border border-neo-300">
+                        <SelectItem value="12px" className="text-neo-700 hover:bg-neo-300">12px</SelectItem>
+                        <SelectItem value="14px" className="text-neo-700 hover:bg-neo-300">14px</SelectItem>
+                        <SelectItem value="16px" className="text-neo-700 hover:bg-neo-300">16px</SelectItem>
+                        <SelectItem value="18px" className="text-neo-700 hover:bg-neo-300">18px</SelectItem>
+                        <SelectItem value="24px" className="text-neo-700 hover:bg-neo-300">24px</SelectItem>
+                        <SelectItem value="32px" className="text-neo-700 hover:bg-neo-300">32px</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                   <div>
-                    <Label>Font Family</Label>
+                    <Label className="text-neo-700">Font Family</Label>
                     <Select 
                       value={selectedEl.style.fontFamily} 
                       onValueChange={(value) => updateElement(selectedEl.id, { 
@@ -203,17 +204,17 @@ const WebsiteMaker = () => {
                       <SelectTrigger className="neo-input">
                         <SelectValue />
                       </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="Arial">Arial</SelectItem>
-                        <SelectItem value="Helvetica">Helvetica</SelectItem>
-                        <SelectItem value="Times New Roman">Times New Roman</SelectItem>
-                        <SelectItem value="Georgia">Georgia</SelectItem>
-                        <SelectItem value="Verdana">Verdana</SelectItem>
+                      <SelectContent className="neo-card border border-neo-300">
+                        <SelectItem value="Arial" className="text-neo-700 hover:bg-neo-300">Arial</SelectItem>
+                        <SelectItem value="Helvetica" className="text-neo-700 hover:bg-neo-300">Helvetica</SelectItem>
+                        <SelectItem value="Times New Roman" className="text-neo-700 hover:bg-neo-300">Times New Roman</SelectItem>
+                        <SelectItem value="Georgia" className="text-neo-700 hover:bg-neo-300">Georgia</SelectItem>
+                        <SelectItem value="Verdana" className="text-neo-700 hover:bg-neo-300">Verdana</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                   <div>
-                    <Label>Background Color</Label>
+                    <Label className="text-neo-700">Background Color</Label>
                     <Input
                       type="color"
                       value={selectedEl.style.backgroundColor || '#ffffff'}
@@ -230,7 +231,7 @@ const WebsiteMaker = () => {
             </TabsContent>
           </Tabs>
           
-          <Button onClick={() => toast("Website saved!")} className="neo-button w-full">
+          <Button onClick={() => toast("Website saved!")} className="neo-button w-full text-neo-700 hover:text-neo-800">
             <Save size={16} />
             Save Website
           </Button>
@@ -250,32 +251,43 @@ const WebsiteMaker = () => {
                 onDrop={handleDrop}
               >
                 {elements.map((element) => (
-                  <div
-                    key={element.id}
-                    draggable
-                    onDragStart={(e) => handleDragStart(e, element.id)}
-                    onClick={() => setSelectedElement(element.id)}
-                    className={`absolute cursor-move border-2 ${
-                      selectedElement === element.id ? 'border-blue-500' : 'border-transparent'
-                    } hover:border-blue-300 transition-colors`}
-                    style={{
-                      left: element.style.x,
-                      top: element.style.y,
-                      width: element.style.width,
-                      height: element.style.height,
-                      backgroundColor: element.style.backgroundColor,
-                      color: element.style.color,
-                      fontSize: element.style.fontSize,
-                      fontFamily: element.style.fontFamily,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      borderRadius: element.type === 'button' ? '8px' : '4px',
-                      padding: '8px'
-                    }}
-                  >
-                    {element.content}
-                  </div>
+                  element.type === 'image' ? (
+                    <ImageWidget
+                      key={element.id}
+                      element={element}
+                      isSelected={selectedElement === element.id}
+                      onUpdate={updateElement}
+                      onSelect={() => setSelectedElement(element.id)}
+                      onDragStart={(e) => handleDragStart(e, element.id)}
+                    />
+                  ) : (
+                    <div
+                      key={element.id}
+                      draggable
+                      onDragStart={(e) => handleDragStart(e, element.id)}
+                      onClick={() => setSelectedElement(element.id)}
+                      className={`absolute cursor-move border-2 ${
+                        selectedElement === element.id ? 'border-blue-500' : 'border-transparent'
+                      } hover:border-blue-300 transition-colors`}
+                      style={{
+                        left: element.style.x,
+                        top: element.style.y,
+                        width: element.style.width,
+                        height: element.style.height,
+                        backgroundColor: element.style.backgroundColor,
+                        color: element.style.color,
+                        fontSize: element.style.fontSize,
+                        fontFamily: element.style.fontFamily,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        borderRadius: element.type === 'button' ? '8px' : '4px',
+                        padding: '8px'
+                      }}
+                    >
+                      {element.content}
+                    </div>
+                  )
                 ))}
               </div>
             </CardContent>
