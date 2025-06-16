@@ -37,7 +37,7 @@ const Register = () => {
           email: formData.email,
           avatar: "/placeholder.svg"
         }));
-        toast("Account created successfully! Welcome to CRM Pro.");
+        toast("Account created successfully! Welcome to Solonest.");
         navigate("/");
       } else {
         toast("Please fill in all fields.");
@@ -58,7 +58,7 @@ const Register = () => {
             <UserPlus className="w-6 h-6 text-neo-600" />
           </div>
           <CardTitle className="text-2xl font-bold text-neo-700">Create Account</CardTitle>
-          <p className="text-neo-500">Join CRM Pro and get started</p>
+          <p className="text-neo-500">Join Solonest and get started</p>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleRegister} className="space-y-4">

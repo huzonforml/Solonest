@@ -55,8 +55,15 @@ export function AppSidebar() {
     <Sidebar className="bg-neo-200 border-r border-neo-300">
       <SidebarHeader className="p-6">
         <div className="neo-card p-4 text-center">
-          <h2 className="text-xl font-bold text-neo-700">CRM Pro</h2>
-          <p className="text-sm text-neo-500 mt-1">Customer Management</p>
+          <div className="flex items-center justify-center gap-3 mb-2">
+            <img 
+              src="/lovable-uploads/b78b3e7d-ba50-4a64-b87e-0ff0f5ad9a3e.png" 
+              alt="Solonest Logo" 
+              className="w-8 h-8 object-contain"
+            />
+            <h2 className="text-xl font-bold text-neo-700">Solonest</h2>
+          </div>
+          <p className="text-sm text-neo-500 mt-1">Business Management Suite</p>
         </div>
       </SidebarHeader>
       <SidebarContent>

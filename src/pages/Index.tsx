@@ -1,4 +1,3 @@
-
 import { Calendar, Users, FileText } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -6,8 +5,8 @@ const Index = () => {
   return (
     <div className="space-y-6">
       <div className="mb-8">
-        <h2 className="text-3xl font-bold text-neo-700 mb-2">Welcome to CRM Pro</h2>
-        <p className="text-neo-500">Manage your customer relationships efficiently</p>
+        <h2 className="text-3xl font-bold text-neo-700 mb-2">Welcome to Solonest</h2>
+        <p className="text-neo-500">Manage your business relationships efficiently</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

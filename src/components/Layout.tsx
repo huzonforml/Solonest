@@ -15,7 +15,7 @@ export function Layout({ children }: LayoutProps) {
         <main className="flex-1 p-6">
           <div className="flex items-center gap-4 mb-8">
             <SidebarTrigger className="neo-button p-2" />
-            <h1 className="text-2xl font-bold text-neo-700">CRM Dashboard</h1>
+            <h1 className="text-2xl font-bold text-neo-700">Solonest Dashboard</h1>
           </div>
           {children}
         </main>
