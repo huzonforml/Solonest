@@ -27,20 +27,18 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <Layout>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/appointments" element={<Appointments />} />
-              <Route path="/leads" element={<Leads />} />
-              <Route path="/contracts" element={<Contracts />} />
-              <Route path="/portfolio-maker" element={<PortfolioMaker />} />
-              <Route path="/website-maker" element={<WebsiteMaker />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Layout>
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/home" element={<Layout><Index /></Layout>} />
+            <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
+            <Route path="/appointments" element={<Layout><Appointments /></Layout>} />
+            <Route path="/leads" element={<Layout><Leads /></Layout>} />
+            <Route path="/contracts" element={<Layout><Contracts /></Layout>} />
+            <Route path="/portfolio-maker" element={<Layout><PortfolioMaker /></Layout>} />
+            <Route path="/website-maker" element={<Layout><WebsiteMaker /></Layout>} />
+            <Route path="/register" element={<Register />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
         </BrowserRouter>
       </TooltipProvider>
     </CRMProvider>

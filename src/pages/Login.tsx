@@ -25,10 +25,11 @@ const Login = () => {
         localStorage.setItem("user", JSON.stringify({
           name: "John Doe",
           email: email,
+          profession: "Business Professional",
           avatar: "/placeholder.svg"
         }));
         toast("Welcome back! You're now logged in.");
-        navigate("/");
+        navigate("/home");
       } else {
         toast("Please fill in all fields.");
       }
@@ -44,7 +45,7 @@ const Login = () => {
             <LogIn className="w-6 h-6 text-neo-600" />
           </div>
           <CardTitle className="text-2xl font-bold text-neo-700">Welcome Back</CardTitle>
-          <p className="text-neo-500">Sign in to your CRM account</p>
+          <p className="text-neo-500">Sign in to your Solonest account</p>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleLogin} className="space-y-4">

@@ -1,5 +1,5 @@
 
-import { Calendar, Users, FileText, User, Palette, BarChart3 } from "lucide-react";
+import { Calendar, Users, FileText, User, Palette, BarChart3, Home } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -16,6 +16,11 @@ import { useLocation, Link } from "react-router-dom";
 import { UserMenu } from "./UserMenu";
 
 const menuItems = [
+  {
+    title: "Home",
+    url: "/home",
+    icon: Home,
+  },
   {
     title: "Dashboard",
     url: "/dashboard",
@@ -56,8 +61,12 @@ export function AppSidebar() {
       <SidebarHeader className="p-6">
         <div className="neo-card p-4 text-center">
           <div className="flex items-center justify-center gap-3 mb-2">
-            <div className="w-8 h-8 bg-neo-600 rounded-full flex items-center justify-center">
-              <span className="text-neo-100 font-bold text-sm">S</span>
+            <div className="w-10 h-10 flex items-center justify-center">
+              <img 
+                src="/lovable-uploads/42ad91fe-1b2e-4f6b-9094-53f2e8b2a1e7.png" 
+                alt="Solonest Logo" 
+                className="w-8 h-8 object-contain"
+              />
             </div>
             <h2 className="text-xl font-bold text-neo-700">Solonest</h2>
           </div>
