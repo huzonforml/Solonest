@@ -13,14 +13,14 @@ const Appointments = () => {
           <Calendar className="w-6 h-6 text-neo-600" />
         </div>
         <div>
-          <h2 className="text-3xl font-bold text-neo-700">Appointments</h2>
+          <h2 className="text-3xl font-bold text-neo-600">Appointments</h2>
           <p className="text-neo-500">Manage your scheduled meetings</p>
         </div>
       </div>
 
       <div className="neo-card p-6">
         <div className="flex justify-between items-center mb-6">
-          <h3 className="text-xl font-semibold text-neo-700">Upcoming Appointments</h3>
+          <h3 className="text-xl font-semibold text-neo-600">Upcoming Appointments</h3>
           <AddAppointmentForm leads={leads} onAddAppointment={addAppointment} />
         </div>
 
@@ -29,12 +29,12 @@ const Appointments = () => {
             <div key={appointment.id} className="neo-card p-4 hover:shadow-neo-outset transition-all duration-200">
               <div className="flex justify-between items-center">
                 <div className="flex-1">
-                  <h4 className="font-semibold text-neo-700 mb-1">{appointment.client}</h4>
-                  <p className="text-neo-500 text-sm">{appointment.type}</p>
+                  <h4 className="font-semibold text-neo-500 mb-1">{appointment.client}</h4>
+                  <p className="text-neo-400 text-sm">{appointment.type}</p>
                 </div>
                 <div className="text-right">
-                  <p className="font-medium text-neo-700">{appointment.date}</p>
-                  <p className="text-neo-500 text-sm">{appointment.time}</p>
+                  <p className="font-medium text-neo-500">{appointment.date}</p>
+                  <p className="text-neo-400 text-sm">{appointment.time}</p>
                 </div>
                 <div className="ml-4">
                   <span className={`px-3 py-1 rounded-full text-xs font-medium ${
