@@ -159,6 +159,45 @@ const initialLeads: Lead[] = [
     notes: "Negotiating contract terms",
     createdAt: "2024-06-15T09:00:00Z",
     updatedAt: "2024-06-16T14:00:00Z"
+  },
+  {
+    id: 5,
+    name: "Emma Johnson",
+    email: "emma.johnson@email.com",
+    phone: "+1 (555) 444-5555",
+    status: "New Leads",
+    source: "Social Media",
+    value: "AED 18,000",
+    company: "Johnson Consulting",
+    notes: "Found us through Facebook ads",
+    createdAt: "2024-06-18T13:00:00Z",
+    updatedAt: "2024-06-18T13:00:00Z"
+  },
+  {
+    id: 6,
+    name: "Frank Miller",
+    email: "frank.miller@email.com",
+    phone: "+1 (555) 666-7777",
+    status: "Qualified",
+    source: "Trade Show",
+    value: "AED 22,000",
+    company: "Miller Industries",
+    notes: "Met at Dubai Tech Expo",
+    createdAt: "2024-06-19T16:00:00Z",
+    updatedAt: "2024-06-20T10:00:00Z"
+  },
+  {
+    id: 7,
+    name: "Grace Lee",
+    email: "grace.lee@email.com",
+    phone: "+1 (555) 888-9999",
+    status: "Closed",
+    source: "Referral",
+    value: "AED 35,000",
+    company: "Lee Enterprises",
+    notes: "Successfully closed - premium package",
+    createdAt: "2024-06-12T11:00:00Z",
+    updatedAt: "2024-06-22T15:00:00Z"
   }
 ];
 
@@ -244,6 +283,58 @@ const initialInvoices: Invoice[] = [
     ],
     notes: "Additional services completed ahead of schedule",
     createdAt: "2024-06-18T14:00:00Z"
+  },
+  {
+    id: 5,
+    clientId: 2,
+    invoiceNumber: "INV-2024-005",
+    amount: "AED 15,000",
+    status: "Sent",
+    dueDate: "2024-06-26",
+    items: [
+      { id: 1, description: "Design Services", quantity: 1, rate: 15000, amount: 15000 }
+    ],
+    notes: "UI/UX design project - phase 1",
+    createdAt: "2024-06-17T10:00:00Z"
+  },
+  {
+    id: 6,
+    clientId: 3,
+    invoiceNumber: "INV-2024-006",
+    amount: "AED 22,000",
+    status: "Draft",
+    dueDate: "2024-07-01",
+    items: [
+      { id: 1, description: "Integration Services", quantity: 1, rate: 22000, amount: 22000 }
+    ],
+    notes: "System integration project",
+    createdAt: "2024-06-19T15:00:00Z"
+  },
+  {
+    id: 7,
+    clientId: 1,
+    invoiceNumber: "INV-2024-007",
+    amount: "AED 9,500",
+    status: "Overdue",
+    dueDate: "2024-06-21",
+    items: [
+      { id: 1, description: "Support Services", quantity: 1, rate: 9500, amount: 9500 }
+    ],
+    notes: "Technical support - Q2 2024",
+    createdAt: "2024-06-05T12:00:00Z"
+  },
+  {
+    id: 8,
+    clientId: 2,
+    invoiceNumber: "INV-2024-008",
+    amount: "AED 31,000",
+    status: "Sent",
+    dueDate: "2024-06-29",
+    items: [
+      { id: 1, description: "Development Package", quantity: 1, rate: 31000, amount: 31000 }
+    ],
+    notes: "Full stack development - milestone 2",
+    createdAt: "2024-06-20T08:00:00Z"
   }
 ];
 
@@ -252,7 +343,7 @@ const initialAppointments: Appointment[] = [
     id: 1,
     client: "John Smith",
     date: "2024-06-17",
-    time: "10:00 AM",
+    time: "10:00",
     status: "Confirmed",
     type: "Consultation",
     clientId: 1,
@@ -262,7 +353,7 @@ const initialAppointments: Appointment[] = [
     id: 2,
     client: "Sarah Johnson",
     date: "2024-06-17",
-    time: "2:00 PM",
+    time: "14:00",
     status: "Pending",
     type: "Follow-up",
     clientId: 2,
@@ -273,7 +364,7 @@ const initialAppointments: Appointment[] = [
     id: 3,
     client: "Michael Davis",
     date: "2024-06-18",
-    time: "11:30 AM",
+    time: "11:30",
     status: "Confirmed",
     type: "Consultation",
     clientId: 3,
@@ -283,7 +374,7 @@ const initialAppointments: Appointment[] = [
     id: 4,
     client: "Alice Cooper",
     date: "2024-06-19",
-    time: "9:00 AM",
+    time: "09:00",
     status: "Scheduled",
     type: "Demo",
     leadId: 1,
@@ -293,7 +384,7 @@ const initialAppointments: Appointment[] = [
     id: 5,
     client: "Bob Wilson",
     date: "2024-06-20",
-    time: "3:30 PM",
+    time: "15:30",
     status: "Confirmed",
     type: "Negotiation",
     leadId: 2,
@@ -303,11 +394,71 @@ const initialAppointments: Appointment[] = [
     id: 6,
     client: "Carol Brown",
     date: "2024-06-21",
-    time: "1:00 PM",
+    time: "13:00",
     status: "Tentative",
     type: "Presentation",
     leadId: 3,
     notes: "Final proposal presentation"
+  },
+  {
+    id: 7,
+    client: "Emma Johnson",
+    date: "2024-06-22",
+    time: "10:30",
+    status: "Scheduled",
+    type: "Initial Meeting",
+    leadId: 5,
+    notes: "First meeting to understand requirements"
+  },
+  {
+    id: 8,
+    client: "Frank Miller",
+    date: "2024-06-24",
+    time: "16:00",
+    status: "Confirmed",
+    type: "Consultation",
+    leadId: 6,
+    notes: "Technical consultation for new project"
+  },
+  {
+    id: 9,
+    client: "John Smith",
+    date: "2024-06-25",
+    time: "09:30",
+    status: "Scheduled",
+    type: "Progress Review",
+    clientId: 1,
+    notes: "Monthly progress review meeting"
+  },
+  {
+    id: 10,
+    client: "Grace Lee",
+    date: "2024-06-26",
+    time: "14:30",
+    status: "Confirmed",
+    type: "Kickoff Meeting",
+    leadId: 7,
+    notes: "Project kickoff after successful closing"
+  },
+  {
+    id: 11,
+    client: "Sarah Johnson",
+    date: "2024-06-27",
+    time: "11:00",
+    status: "Pending",
+    type: "Design Review",
+    clientId: 2,
+    notes: "Review design mockups and feedback"
+  },
+  {
+    id: 12,
+    client: "Michael Davis",
+    date: "2024-06-28",
+    time: "15:00",
+    status: "Scheduled",
+    type: "Integration Planning",
+    clientId: 3,
+    notes: "Plan system integration approach"
   }
 ];
 
