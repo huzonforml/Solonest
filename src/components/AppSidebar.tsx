@@ -95,7 +95,7 @@ export function AppSidebar() {
           <div className="flex items-center justify-center gap-3 mb-2">
             <div className="w-10 h-10 flex items-center justify-center">
               <img 
-                src="/lovable-uploads/0ed1d3e5-24a0-4aec-96eb-46db7da4408c.png" 
+                src="https://i.ibb.co/rGNSrcS/logo.png" 
                 alt="Solonest Logo" 
                 className="w-8 h-8 object-contain"
                 onError={handleLogoError}
@@ -108,15 +108,15 @@ export function AppSidebar() {
                 S
               </div>
             </div>
-            <h2 className="text-xl font-bold text-neo-700">Solonest</h2>
+            <h2 className="text-xl font-bold text-neo-900">SOLONEST</h2>
           </div>
-          <p className="text-sm text-neo-500 mt-1">Business Management Suite</p>
+          <p className="text-sm text-neo-700 mt-1">Business Management Suite</p>
         </div>
       </SidebarHeader>
       <SidebarContent>
         {/* Main Menu */}
         <SidebarGroup>
-          <SidebarGroupLabel className="text-neo-600 font-semibold px-6 py-2">
+          <SidebarGroupLabel className="text-neo-800 font-semibold px-6 py-2">
             Main Menu
           </SidebarGroupLabel>
           <SidebarGroupContent className="px-4">
@@ -127,8 +127,8 @@ export function AppSidebar() {
                     asChild
                     className={`neo-button p-3 w-full justify-start gap-3 ${
                       location.pathname === item.url
-                        ? "neo-card-pressed text-neo-800 font-semibold"
-                        : "text-neo-600 hover:text-neo-800 hover:bg-neo-300"
+                        ? "neo-card-pressed text-neo-900 font-semibold"
+                        : "text-neo-700 hover:text-neo-900 hover:bg-neo-300"
                     }`}
                   >
                     <Link to={item.url}>
@@ -145,8 +145,8 @@ export function AppSidebar() {
         {/* CRM Section */}
         <SidebarGroup>
           <Collapsible open={isCRMOpen} onOpenChange={setIsCRMOpen}>
-            <SidebarGroupLabel className="text-neo-600 font-semibold px-6 py-2">
-              <CollapsibleTrigger className="flex items-center justify-between w-full hover:text-neo-800">
+            <SidebarGroupLabel className="text-neo-800 font-semibold px-6 py-2">
+              <CollapsibleTrigger className="flex items-center justify-between w-full hover:text-neo-900">
                 CRM
                 <ChevronDown className={`h-4 w-4 transition-transform ${isCRMOpen ? 'rotate-180' : ''}`} />
               </CollapsibleTrigger>
@@ -160,8 +160,8 @@ export function AppSidebar() {
                         asChild
                         className={`neo-button p-3 w-full justify-start gap-3 ${
                           location.pathname === item.url
-                            ? "neo-card-pressed text-neo-800 font-semibold"
-                            : "text-neo-600 hover:text-neo-800 hover:bg-neo-300"
+                            ? "neo-card-pressed text-neo-900 font-semibold"
+                            : "text-neo-700 hover:text-neo-900 hover:bg-neo-300"
                         }`}
                       >
                         <Link to={item.url}>
@@ -180,8 +180,8 @@ export function AppSidebar() {
         {/* Tools Section */}
         <SidebarGroup>
           <Collapsible open={isToolsOpen} onOpenChange={setIsToolsOpen}>
-            <SidebarGroupLabel className="text-neo-600 font-semibold px-6 py-2">
-              <CollapsibleTrigger className="flex items-center justify-between w-full hover:text-neo-800">
+            <SidebarGroupLabel className="text-neo-800 font-semibold px-6 py-2">
+              <CollapsibleTrigger className="flex items-center justify-between w-full hover:text-neo-900">
                 Tools
                 <ChevronDown className={`h-4 w-4 transition-transform ${isToolsOpen ? 'rotate-180' : ''}`} />
               </CollapsibleTrigger>
@@ -195,8 +195,8 @@ export function AppSidebar() {
                         asChild
                         className={`neo-button p-3 w-full justify-start gap-3 ${
                           location.pathname === item.url
-                            ? "neo-card-pressed text-neo-800 font-semibold"
-                            : "text-neo-600 hover:text-neo-800 hover:bg-neo-300"
+                            ? "neo-card-pressed text-neo-900 font-semibold"
+                            : "text-neo-700 hover:text-neo-900 hover:bg-neo-300"
                         }`}
                       >
                         <Link to={item.url}>
@@ -208,7 +208,7 @@ export function AppSidebar() {
                   ))}
                 </SidebarMenu>
               </SidebarGroupContent>
-            </CollapsibleContent>
+            </Collapsible>
           </Collapsible>
         </SidebarGroup>
       </SidebarContent>
