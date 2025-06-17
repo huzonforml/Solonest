@@ -1,5 +1,5 @@
 
-import { Calendar, Users, FileText, User, Palette, BarChart3, Home, Receipt, UserCheck, ChevronDown } from "lucide-react";
+import { Calendar, Users, FileText, User, Palette, BarChart3, Home, Receipt, UserCheck, ChevronDown, CalendarDays } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -43,6 +43,11 @@ const crmMenuItems = [
     title: "Clients",
     url: "/clients",
     icon: UserCheck,
+  },
+  {
+    title: "Calendar",
+    url: "/calendar",
+    icon: CalendarDays,
   },
   {
     title: "Appointments",

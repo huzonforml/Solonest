@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -14,6 +15,7 @@ import Dashboard from "./pages/Dashboard";
 import WebsiteMaker from "./pages/WebsiteMaker";
 import Clients from "./pages/Clients";
 import Invoices from "./pages/Invoices";
+import Calendar from "./pages/Calendar";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
@@ -35,6 +37,7 @@ const App = () => (
             <Route path="/appointments" element={<Layout><Appointments /></Layout>} />
             <Route path="/leads" element={<Layout><Leads /></Layout>} />
             <Route path="/clients" element={<Layout><Clients /></Layout>} />
+            <Route path="/calendar" element={<Layout><Calendar /></Layout>} />
             <Route path="/contracts" element={<Layout><Contracts /></Layout>} />
             <Route path="/invoices" element={<Layout><Invoices /></Layout>} />
             <Route path="/portfolio-maker" element={<Layout><PortfolioMaker /></Layout>} />
