@@ -1,3 +1,4 @@
+
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from "recharts";
 import { Calendar, Users, FileText, TrendingUp, DollarSign, Clock, UserCheck, Receipt, AlertTriangle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -39,13 +40,11 @@ const Dashboard = () => {
   const paidInvoices = invoices.filter(inv => inv.status === 'Paid').reduce((sum, invoice) => sum + parseFloat(invoice.amount.replace(/[^\d.]/g, '')), 0);
   const overdueInvoices = invoices.filter(inv => inv.status === 'Overdue').length;
 
-  // Upcoming activities (next 7 days)
   const upcomingAppointments = appointments
     .filter(apt => new Date(apt.date) >= new Date() && new Date(apt.date) <= new Date(Date.now() + 7 * 24 * 60 * 60 * 1000))
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
     .slice(0, 5);
 
-  // Recent leads (last 30 days)
   const recentLeads = leads
     .filter(lead => new Date(lead.createdAt) >= new Date(Date.now() - 30 * 24 * 60 * 60 * 1000))
     .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
@@ -58,8 +57,8 @@ const Dashboard = () => {
           <TrendingUp className="w-6 h-6 text-neo-600" />
         </div>
         <div>
-          <h2 className="text-3xl font-bold text-neo-700">Dashboard</h2>
-          <p className="text-neo-500">Your CRM analytics and insights</p>
+          <h2 className="text-3xl font-bold text-neo-800">Dashboard</h2>
+          <p className="text-neo-600">Your CRM analytics and insights</p>
         </div>
       </div>
 
@@ -67,55 +66,57 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
         <Card className="neo-card">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-neo-600">Total Leads</CardTitle>
+            <CardTitle className="text-sm font-medium text-neo-700">Total Leads</CardTitle>
             <Users className="h-4 w-4 text-neo-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-neo-700">{leads.length}</div>
+            <div className="text-2xl font-bold text-neo-800">
+              {leads.length}
+            </div>
             <p className="text-xs text-neo-500">Active prospects</p>
           </CardContent>
         </Card>
 
         <Card className="neo-card">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-neo-600">Clients</CardTitle>
+            <CardTitle className="text-sm font-medium text-neo-700">Clients</CardTitle>
             <UserCheck className="h-4 w-4 text-neo-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-neo-700">{clients.length}</div>
+            <div className="text-2xl font-bold text-neo-800">{clients.length}</div>
             <p className="text-xs text-neo-500">Active clients</p>
           </CardContent>
         </Card>
 
         <Card className="neo-card">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-neo-600">Appointments</CardTitle>
+            <CardTitle className="text-sm font-medium text-neo-700">Appointments</CardTitle>
             <Calendar className="h-4 w-4 text-neo-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-neo-700">{appointments.length}</div>
+            <div className="text-2xl font-bold text-neo-800">{appointments.length}</div>
             <p className="text-xs text-neo-500">Scheduled meetings</p>
           </CardContent>
         </Card>
 
         <Card className="neo-card">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-neo-600">Contracts</CardTitle>
+            <CardTitle className="text-sm font-medium text-neo-700">Contracts</CardTitle>
             <FileText className="h-4 w-4 text-neo-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-neo-700">{contracts.length}</div>
+            <div className="text-2xl font-bold text-neo-800">{contracts.length}</div>
             <p className="text-xs text-neo-500">Active contracts</p>
           </CardContent>
         </Card>
 
         <Card className="neo-card">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-neo-600">Revenue</CardTitle>
+            <CardTitle className="text-sm font-medium text-neo-700">Revenue</CardTitle>
             <DollarSign className="h-4 w-4 text-neo-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-neo-700">AED {totalRevenue.toLocaleString()}</div>
+            <div className="text-2xl font-bold text-neo-800">AED {totalRevenue.toLocaleString()}</div>
             <p className="text-xs text-neo-500">Total contract value</p>
           </CardContent>
         </Card>
@@ -125,18 +126,18 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Card className="neo-card">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-neo-600">Total Invoiced</CardTitle>
+            <CardTitle className="text-sm font-medium text-neo-700">Total Invoiced</CardTitle>
             <Receipt className="h-4 w-4 text-neo-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-xl font-bold text-neo-700">AED {totalInvoices.toLocaleString()}</div>
+            <div className="text-xl font-bold text-neo-800">AED {totalInvoices.toLocaleString()}</div>
             <p className="text-xs text-neo-500">{invoices.length} invoices</p>
           </CardContent>
         </Card>
 
         <Card className="neo-card">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-neo-600">Paid Invoices</CardTitle>
+            <CardTitle className="text-sm font-medium text-neo-700">Paid Invoices</CardTitle>
             <DollarSign className="h-4 w-4 text-green-500" />
           </CardHeader>
           <CardContent>
@@ -147,7 +148,7 @@ const Dashboard = () => {
 
         <Card className="neo-card">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-neo-600">Overdue</CardTitle>
+            <CardTitle className="text-sm font-medium text-neo-700">Overdue</CardTitle>
             <AlertTriangle className="h-4 w-4 text-red-500" />
           </CardHeader>
           <CardContent>
@@ -162,7 +163,7 @@ const Dashboard = () => {
         {/* Leads by Status */}
         <Card className="neo-card">
           <CardHeader>
-            <CardTitle className="text-neo-700">Leads by Status</CardTitle>
+            <CardTitle className="text-neo-800">Leads by Status</CardTitle>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
@@ -190,7 +191,7 @@ const Dashboard = () => {
         {/* Monthly Performance */}
         <Card className="neo-card">
           <CardHeader>
-            <CardTitle className="text-neo-700">Monthly Performance</CardTitle>
+            <CardTitle className="text-neo-800">Monthly Performance</CardTitle>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
@@ -211,7 +212,7 @@ const Dashboard = () => {
       {/* Revenue Trend */}
       <Card className="neo-card">
         <CardHeader>
-          <CardTitle className="text-neo-700">Revenue Trend</CardTitle>
+          <CardTitle className="text-neo-800">Revenue Trend</CardTitle>
         </CardHeader>
         <CardContent>
           <ResponsiveContainer width="100%" height={300}>
@@ -230,7 +231,7 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <Card className="neo-card">
           <CardHeader>
-            <CardTitle className="text-neo-700 flex items-center gap-2">
+            <CardTitle className="text-neo-800 flex items-center gap-2">
               <Clock className="w-5 h-5" />
               Upcoming Activities
             </CardTitle>
@@ -241,17 +242,17 @@ const Dashboard = () => {
                 upcomingAppointments.map((appointment) => (
                   <div key={appointment.id} className="flex items-center justify-between p-3 neo-card">
                     <div>
-                      <p className="font-medium text-neo-700">{appointment.client}</p>
-                      <p className="text-sm text-neo-500">{appointment.type}</p>
+                      <p className="font-medium text-neo-800">{appointment.client}</p>
+                      <p className="text-sm text-neo-600">{appointment.type}</p>
                     </div>
                     <div className="text-right">
-                      <p className="text-sm font-medium text-neo-600">{appointment.date}</p>
+                      <p className="text-sm font-medium text-neo-700">{appointment.date}</p>
                       <p className="text-xs text-neo-500">{appointment.time}</p>
                     </div>
                   </div>
                 ))
               ) : (
-                <p className="text-neo-500 text-center py-4">No upcoming activities</p>
+                <p className="text-neo-600 text-center py-4">No upcoming activities</p>
               )}
             </div>
           </CardContent>
@@ -259,7 +260,7 @@ const Dashboard = () => {
 
         <Card className="neo-card">
           <CardHeader>
-            <CardTitle className="text-neo-700 flex items-center gap-2">
+            <CardTitle className="text-neo-800 flex items-center gap-2">
               <Users className="w-5 h-5" />
               Recent Leads
             </CardTitle>
@@ -269,11 +270,11 @@ const Dashboard = () => {
               {recentLeads.map((lead) => (
                 <div key={lead.id} className="flex items-center justify-between p-3 neo-card">
                   <div>
-                    <p className="font-medium text-neo-700">{lead.name}</p>
-                    <p className="text-sm text-neo-500">{lead.company}</p>
+                    <p className="font-medium text-neo-800">{lead.name}</p>
+                    <p className="text-sm text-neo-600">{lead.company}</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm font-medium text-neo-600">{lead.value}</p>
+                    <p className="text-sm font-medium text-neo-700">{lead.value}</p>
                     <Badge className={`text-xs ${
                       lead.status === 'New Leads' ? 'bg-blue-100 text-blue-800' : 
                       lead.status === 'Qualified' ? 'bg-green-100 text-green-800' :
@@ -292,7 +293,7 @@ const Dashboard = () => {
 
         <Card className="neo-card">
           <CardHeader>
-            <CardTitle className="text-neo-700 flex items-center gap-2">
+            <CardTitle className="text-neo-800 flex items-center gap-2">
               <Receipt className="w-5 h-5" />
               Invoice Summary
             </CardTitle>
@@ -302,11 +303,11 @@ const Dashboard = () => {
               {invoices.slice(0, 5).map((invoice) => (
                 <div key={invoice.id} className="flex items-center justify-between p-3 neo-card">
                   <div>
-                    <p className="font-medium text-neo-700">{invoice.invoiceNumber}</p>
-                    <p className="text-sm text-neo-500">Due: {new Date(invoice.dueDate).toLocaleDateString()}</p>
+                    <p className="font-medium text-neo-800">{invoice.invoiceNumber}</p>
+                    <p className="text-sm text-neo-600">Due: {new Date(invoice.dueDate).toLocaleDateString()}</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm font-medium text-neo-600">{invoice.amount}</p>
+                    <p className="text-sm font-medium text-neo-700">{invoice.amount}</p>
                     <Badge className={`text-xs ${
                       invoice.status === 'Paid' ? 'bg-green-100 text-green-800' :
                       invoice.status === 'Sent' ? 'bg-blue-100 text-blue-800' :

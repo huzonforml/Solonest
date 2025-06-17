@@ -56,8 +56,8 @@ const Invoices = () => {
           <Receipt className="w-6 h-6 text-neo-600" />
         </div>
         <div>
-          <h2 className="text-3xl font-bold text-neo-700">Invoices</h2>
-          <p className="text-neo-500">Manage your billing and payments</p>
+          <h2 className="text-3xl font-bold text-neo-800">Invoices</h2>
+          <p className="text-neo-600">Manage your billing and payments</p>
         </div>
       </div>
 
@@ -65,10 +65,10 @@ const Invoices = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card className="neo-card">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-neo-600">Total Invoiced</CardTitle>
+            <CardTitle className="text-sm font-medium text-neo-700">Total Invoiced</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-neo-700">
+            <div className="text-2xl font-bold text-neo-800">
               AED {totalInvoiceAmount.toLocaleString()}
             </div>
           </CardContent>
@@ -76,7 +76,7 @@ const Invoices = () => {
 
         <Card className="neo-card">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-neo-600">Paid</CardTitle>
+            <CardTitle className="text-sm font-medium text-neo-700">Paid</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-green-600">
@@ -87,7 +87,7 @@ const Invoices = () => {
 
         <Card className="neo-card">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-neo-600">Pending</CardTitle>
+            <CardTitle className="text-sm font-medium text-neo-700">Pending</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-orange-600">
@@ -99,7 +99,7 @@ const Invoices = () => {
 
       <div className="neo-card p-6">
         <div className="flex justify-between items-center mb-6">
-          <h3 className="text-xl font-semibold text-neo-700">All Invoices</h3>
+          <h3 className="text-xl font-semibold text-neo-800">All Invoices</h3>
           <Button 
             onClick={() => setShowAddForm(true)}
             className="neo-button bg-neo-600 text-neo-100 hover:bg-neo-700"
@@ -113,31 +113,31 @@ const Invoices = () => {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Invoice #</TableHead>
-                <TableHead>Client</TableHead>
-                <TableHead>Amount</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Due Date</TableHead>
-                <TableHead>Created</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
+                <TableHead className="text-neo-700">Invoice #</TableHead>
+                <TableHead className="text-neo-700">Client</TableHead>
+                <TableHead className="text-neo-700">Amount</TableHead>
+                <TableHead className="text-neo-700">Status</TableHead>
+                <TableHead className="text-neo-700">Due Date</TableHead>
+                <TableHead className="text-neo-700">Created</TableHead>
+                <TableHead className="text-right text-neo-700">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {invoices.map((invoice) => (
                 <TableRow key={invoice.id} className="hover:bg-neo-100">
-                  <TableCell className="font-medium">{invoice.invoiceNumber}</TableCell>
-                  <TableCell>{getClientName(invoice.clientId)}</TableCell>
-                  <TableCell className="font-semibold">{invoice.amount}</TableCell>
+                  <TableCell className="font-medium text-neo-700">{invoice.invoiceNumber}</TableCell>
+                  <TableCell className="text-neo-700">{getClientName(invoice.clientId)}</TableCell>
+                  <TableCell className="font-semibold text-neo-700">{invoice.amount}</TableCell>
                   <TableCell>
                     <Badge className={`${getStatusColor(invoice.status)} flex items-center gap-1 w-fit`}>
                       {getStatusIcon(invoice.status)}
                       {invoice.status}
                     </Badge>
                   </TableCell>
-                  <TableCell>
+                  <TableCell className="text-neo-700">
                     {new Date(invoice.dueDate).toLocaleDateString()}
                   </TableCell>
-                  <TableCell>
+                  <TableCell className="text-neo-700">
                     {new Date(invoice.createdAt).toLocaleDateString()}
                   </TableCell>
                   <TableCell className="text-right">

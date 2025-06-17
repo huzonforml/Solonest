@@ -56,12 +56,12 @@ export function AddClientForm({ isOpen, onClose }: AddClientFormProps) {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-xl font-bold text-neo-700">Add New Client</DialogTitle>
+          <DialogTitle className="text-xl font-bold text-neo-800">Add New Client</DialogTitle>
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <Label htmlFor="name">Name *</Label>
+            <Label htmlFor="name" className="text-neo-700">Name *</Label>
             <Input
               id="name"
               value={formData.name}
@@ -71,7 +71,7 @@ export function AddClientForm({ isOpen, onClose }: AddClientFormProps) {
           </div>
 
           <div>
-            <Label htmlFor="email">Email *</Label>
+            <Label htmlFor="email" className="text-neo-700">Email *</Label>
             <Input
               id="email"
               type="email"
@@ -82,7 +82,7 @@ export function AddClientForm({ isOpen, onClose }: AddClientFormProps) {
           </div>
 
           <div>
-            <Label htmlFor="phone">Phone</Label>
+            <Label htmlFor="phone" className="text-neo-700">Phone</Label>
             <Input
               id="phone"
               value={formData.phone}
@@ -91,7 +91,7 @@ export function AddClientForm({ isOpen, onClose }: AddClientFormProps) {
           </div>
 
           <div>
-            <Label htmlFor="company">Company *</Label>
+            <Label htmlFor="company" className="text-neo-700">Company *</Label>
             <Input
               id="company"
               value={formData.company}
@@ -101,7 +101,7 @@ export function AddClientForm({ isOpen, onClose }: AddClientFormProps) {
           </div>
 
           <div>
-            <Label htmlFor="address">Address</Label>
+            <Label htmlFor="address" className="text-neo-700">Address</Label>
             <Textarea
               id="address"
               value={formData.address}

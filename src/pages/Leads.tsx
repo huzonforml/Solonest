@@ -10,8 +10,8 @@ const Leads = () => {
           <Users className="w-6 h-6 text-neo-600" />
         </div>
         <div>
-          <h2 className="text-3xl font-bold text-neo-700">Leads</h2>
-          <p className="text-neo-500">Track and manage potential customers</p>
+          <h2 className="text-3xl font-bold text-neo-800">Leads</h2>
+          <p className="text-neo-600">Track and manage potential customers</p>
         </div>
       </div>
 

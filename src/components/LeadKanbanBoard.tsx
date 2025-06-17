@@ -44,8 +44,8 @@ export function LeadKanbanBoard() {
       {/* Header with Pipeline Value */}
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-2xl font-bold text-neo-700">Leads Pipeline</h2>
-          <p className="text-lg font-semibold text-neo-600">
+          <h2 className="text-2xl font-bold text-neo-800">Leads Pipeline</h2>
+          <p className="text-lg font-semibold text-neo-700">
             Total Pipeline Value: <span className="text-green-600">AED {totalPipeline.toLocaleString()}</span>
           </p>
         </div>
@@ -71,12 +71,12 @@ export function LeadKanbanBoard() {
             <div key={status} className="min-w-[300px]">
               <div className="neo-card p-4 mb-4">
                 <div className="flex justify-between items-center mb-2">
-                  <h3 className="font-semibold text-neo-700">{status}</h3>
+                  <h3 className="font-semibold text-neo-800">{status}</h3>
                   <Badge variant="secondary" className={statusColors[status]}>
                     {statusLeads.length}
                   </Badge>
                 </div>
-                <p className="text-sm text-neo-500">
+                <p className="text-sm text-neo-600">
                   AED {statusValue.toLocaleString()}
                 </p>
               </div>
@@ -86,7 +86,7 @@ export function LeadKanbanBoard() {
                   <Card key={lead.id} className="neo-card hover:shadow-neo-outset transition-all duration-200 cursor-pointer">
                     <CardHeader className="pb-2">
                       <div className="flex justify-between items-start">
-                        <CardTitle className="text-sm font-medium text-neo-700">
+                        <CardTitle className="text-sm font-medium text-neo-800">
                           {lead.name}
                         </CardTitle>
                         <div className="flex gap-1">
@@ -105,11 +105,11 @@ export function LeadKanbanBoard() {
                       </div>
                     </CardHeader>
                     <CardContent className="pt-0">
-                      <div className="space-y-1 text-xs text-neo-500">
+                      <div className="space-y-1 text-xs text-neo-600">
                         <p>{lead.company}</p>
                         <p>{lead.email}</p>
-                        <p className="font-medium text-neo-700">{lead.value}</p>
-                        <p className="text-neo-400">{lead.source}</p>
+                        <p className="font-medium text-neo-800">{lead.value}</p>
+                        <p className="text-neo-500">{lead.source}</p>
                       </div>
                       
                       {/* Status Change Buttons */}

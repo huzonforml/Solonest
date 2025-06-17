@@ -18,14 +18,14 @@ const Clients = () => {
           <UserCheck className="w-6 h-6 text-neo-600" />
         </div>
         <div>
-          <h2 className="text-3xl font-bold text-neo-700">Clients</h2>
-          <p className="text-neo-500">Manage your client relationships</p>
+          <h2 className="text-3xl font-bold text-neo-800">Clients</h2>
+          <p className="text-neo-600">Manage your client relationships</p>
         </div>
       </div>
 
       <div className="neo-card p-6">
         <div className="flex justify-between items-center mb-6">
-          <h3 className="text-xl font-semibold text-neo-700">All Clients</h3>
+          <h3 className="text-xl font-semibold text-neo-800">All Clients</h3>
           <Button 
             onClick={() => setShowAddForm(true)}
             className="neo-button bg-neo-600 text-neo-100 hover:bg-neo-700"
@@ -39,22 +39,22 @@ const Clients = () => {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Name</TableHead>
-                <TableHead>Company</TableHead>
-                <TableHead>Email</TableHead>
-                <TableHead>Phone</TableHead>
-                <TableHead>Created</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
+                <TableHead className="text-neo-700">Name</TableHead>
+                <TableHead className="text-neo-700">Company</TableHead>
+                <TableHead className="text-neo-700">Email</TableHead>
+                <TableHead className="text-neo-700">Phone</TableHead>
+                <TableHead className="text-neo-700">Created</TableHead>
+                <TableHead className="text-right text-neo-700">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {clients.map((client) => (
                 <TableRow key={client.id} className="hover:bg-neo-100">
-                  <TableCell className="font-medium">{client.name}</TableCell>
-                  <TableCell>{client.company}</TableCell>
-                  <TableCell>{client.email}</TableCell>
-                  <TableCell>{client.phone}</TableCell>
-                  <TableCell>
+                  <TableCell className="font-medium text-neo-700">{client.name}</TableCell>
+                  <TableCell className="text-neo-700">{client.company}</TableCell>
+                  <TableCell className="text-neo-700">{client.email}</TableCell>
+                  <TableCell className="text-neo-700">{client.phone}</TableCell>
+                  <TableCell className="text-neo-700">
                     {new Date(client.createdAt).toLocaleDateString()}
                   </TableCell>
                   <TableCell className="text-right">

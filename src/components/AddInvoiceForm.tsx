@@ -96,14 +96,14 @@ export function AddInvoiceForm({ isOpen, onClose }: AddInvoiceFormProps) {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-xl font-bold text-neo-700">Create New Invoice</DialogTitle>
+          <DialogTitle className="text-xl font-bold text-neo-800">Create New Invoice</DialogTitle>
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Invoice Details */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
-              <Label htmlFor="client">Client *</Label>
+              <Label htmlFor="client" className="text-neo-700">Client *</Label>
               <Select 
                 value={formData.clientId} 
                 onValueChange={(value) => setFormData(prev => ({ ...prev, clientId: value }))}
@@ -122,7 +122,7 @@ export function AddInvoiceForm({ isOpen, onClose }: AddInvoiceFormProps) {
             </div>
 
             <div>
-              <Label htmlFor="invoiceNumber">Invoice Number</Label>
+              <Label htmlFor="invoiceNumber" className="text-neo-700">Invoice Number</Label>
               <Input
                 id="invoiceNumber"
                 value={formData.invoiceNumber}
@@ -131,7 +131,7 @@ export function AddInvoiceForm({ isOpen, onClose }: AddInvoiceFormProps) {
             </div>
 
             <div>
-              <Label htmlFor="dueDate">Due Date *</Label>
+              <Label htmlFor="dueDate" className="text-neo-700">Due Date *</Label>
               <Input
                 id="dueDate"
                 type="date"
@@ -145,7 +145,7 @@ export function AddInvoiceForm({ isOpen, onClose }: AddInvoiceFormProps) {
           {/* Invoice Items */}
           <div>
             <div className="flex justify-between items-center mb-4">
-              <Label className="text-lg">Invoice Items</Label>
+              <Label className="text-lg text-neo-800">Invoice Items</Label>
               <Button type="button" onClick={addItem} variant="outline" size="sm">
                 <Plus size={16} />
                 Add Item
@@ -156,7 +156,7 @@ export function AddInvoiceForm({ isOpen, onClose }: AddInvoiceFormProps) {
               {items.map((item, index) => (
                 <div key={item.id} className="grid grid-cols-12 gap-3 items-end neo-card p-3">
                   <div className="col-span-5">
-                    <Label>Description</Label>
+                    <Label className="text-neo-700">Description</Label>
                     <Input
                       value={item.description}
                       onChange={(e) => handleItemChange(item.id, 'description', e.target.value)}
@@ -164,7 +164,7 @@ export function AddInvoiceForm({ isOpen, onClose }: AddInvoiceFormProps) {
                     />
                   </div>
                   <div className="col-span-2">
-                    <Label>Quantity</Label>
+                    <Label className="text-neo-700">Quantity</Label>
                     <Input
                       type="number"
                       min="1"
@@ -173,7 +173,7 @@ export function AddInvoiceForm({ isOpen, onClose }: AddInvoiceFormProps) {
                     />
                   </div>
                   <div className="col-span-2">
-                    <Label>Rate (AED)</Label>
+                    <Label className="text-neo-700">Rate (AED)</Label>
                     <Input
                       type="number"
                       min="0"
@@ -183,7 +183,7 @@ export function AddInvoiceForm({ isOpen, onClose }: AddInvoiceFormProps) {
                     />
                   </div>
                   <div className="col-span-2">
-                    <Label>Amount</Label>
+                    <Label className="text-neo-700">Amount</Label>
                     <Input
                       value={`AED ${item.amount.toLocaleString()}`}
                       readOnly
@@ -211,8 +211,8 @@ export function AddInvoiceForm({ isOpen, onClose }: AddInvoiceFormProps) {
             <div className="flex justify-end mt-4">
               <div className="neo-card p-4 min-w-[200px]">
                 <div className="flex justify-between items-center">
-                  <span className="font-semibold">Total:</span>
-                  <span className="text-xl font-bold text-neo-700">
+                  <span className="font-semibold text-neo-700">Total:</span>
+                  <span className="text-xl font-bold text-neo-800">
                     AED {getTotalAmount().toLocaleString()}
                   </span>
                 </div>

@@ -66,12 +66,12 @@ export function AddLeadForm({ isOpen, onClose }: AddLeadFormProps) {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-xl font-bold text-neo-700">Add New Lead</DialogTitle>
+          <DialogTitle className="text-xl font-bold text-neo-800">Add New Lead</DialogTitle>
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <Label htmlFor="name">Name *</Label>
+            <Label htmlFor="name" className="text-neo-700">Name *</Label>
             <Input
               id="name"
               value={formData.name}
@@ -81,7 +81,7 @@ export function AddLeadForm({ isOpen, onClose }: AddLeadFormProps) {
           </div>
 
           <div>
-            <Label htmlFor="email">Email *</Label>
+            <Label htmlFor="email" className="text-neo-700">Email *</Label>
             <Input
               id="email"
               type="email"
@@ -92,7 +92,7 @@ export function AddLeadForm({ isOpen, onClose }: AddLeadFormProps) {
           </div>
 
           <div>
-            <Label htmlFor="phone">Phone</Label>
+            <Label htmlFor="phone" className="text-neo-700">Phone</Label>
             <Input
               id="phone"
               value={formData.phone}
@@ -101,7 +101,7 @@ export function AddLeadForm({ isOpen, onClose }: AddLeadFormProps) {
           </div>
 
           <div>
-            <Label htmlFor="company">Company</Label>
+            <Label htmlFor="company" className="text-neo-700">Company</Label>
             <Input
               id="company"
               value={formData.company}
@@ -110,7 +110,7 @@ export function AddLeadForm({ isOpen, onClose }: AddLeadFormProps) {
           </div>
 
           <div>
-            <Label htmlFor="value">Value (AED) *</Label>
+            <Label htmlFor="value" className="text-neo-700">Value (AED) *</Label>
             <Input
               id="value"
               placeholder="AED 10,000"
@@ -121,7 +121,7 @@ export function AddLeadForm({ isOpen, onClose }: AddLeadFormProps) {
           </div>
 
           <div>
-            <Label htmlFor="source">Source</Label>
+            <Label htmlFor="source" className="text-neo-700">Source</Label>
             <Input
               id="source"
               placeholder="Website, LinkedIn, Referral, etc."
@@ -131,7 +131,7 @@ export function AddLeadForm({ isOpen, onClose }: AddLeadFormProps) {
           </div>
 
           <div>
-            <Label htmlFor="status">Status</Label>
+            <Label htmlFor="status" className="text-neo-700">Status</Label>
             <Select 
               value={formData.status} 
               onValueChange={(value: LeadStatus) => setFormData(prev => ({ ...prev, status: value }))}
@@ -150,7 +150,7 @@ export function AddLeadForm({ isOpen, onClose }: AddLeadFormProps) {
           </div>
 
           <div>
-            <Label htmlFor="notes">Notes</Label>
+            <Label htmlFor="notes" className="text-neo-700">Notes</Label>
             <Textarea
               id="notes"
               value={formData.notes}
