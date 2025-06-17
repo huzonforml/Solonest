@@ -35,6 +35,7 @@ export interface Invoice {
   dueDate: string;
   items: InvoiceItem[];
   createdAt: string;
+  notes?: string;
 }
 
 export interface InvoiceItem {
@@ -66,6 +67,7 @@ export interface Appointment {
   type: string;
   leadId?: number;
   clientId?: number;
+  notes?: string;
 }
 
 export interface Contract {
@@ -78,6 +80,7 @@ export interface Contract {
   endDate: string;
   leadId?: number;
   clientId?: number;
+  notes?: string;
 }
 
 interface CRMContextType {
@@ -94,7 +97,9 @@ interface CRMContextType {
   addInvoice: (invoice: Invoice) => void;
   updateInvoice: (id: number, updates: Partial<Invoice>) => void;
   addAppointment: (appointment: Appointment) => void;
+  updateAppointment: (id: number, updates: Partial<Appointment>) => void;
   addContract: (contract: Contract) => void;
+  updateContract: (id: number, updates: Partial<Contract>) => void;
   addTimelineEvent: (event: Omit<TimelineEvent, 'id' | 'createdAt'>) => void;
   getLeadTimeline: (leadId: number) => TimelineEvent[];
   getTotalPipelineValue: () => number;
@@ -112,6 +117,7 @@ const initialLeads: Lead[] = [
     source: "Website",
     value: "AED 15,000",
     company: "Cooper Industries",
+    notes: "Interested in our premium package",
     createdAt: "2024-06-10T10:00:00Z",
     updatedAt: "2024-06-10T10:00:00Z"
   },
@@ -124,6 +130,7 @@ const initialLeads: Lead[] = [
     source: "Referral",
     value: "AED 8,500",
     company: "Wilson Corp",
+    notes: "Needs proposal by end of month",
     createdAt: "2024-06-11T14:00:00Z",
     updatedAt: "2024-06-12T09:00:00Z"
   },
@@ -136,8 +143,22 @@ const initialLeads: Lead[] = [
     source: "LinkedIn",
     value: "AED 12,000",
     company: "Brown Enterprises",
+    notes: "Waiting for feedback on pricing",
     createdAt: "2024-06-08T16:00:00Z",
     updatedAt: "2024-06-14T11:00:00Z"
+  },
+  {
+    id: 4,
+    name: "David Smith",
+    email: "david.smith@email.com",
+    phone: "+1 (555) 321-9876",
+    status: "Negotiation",
+    source: "Cold Call",
+    value: "AED 25,000",
+    company: "Smith & Associates",
+    notes: "Negotiating contract terms",
+    createdAt: "2024-06-15T09:00:00Z",
+    updatedAt: "2024-06-16T14:00:00Z"
   }
 ];
 
@@ -159,6 +180,15 @@ const initialClients: Client[] = [
     company: "StartupXYZ Inc",
     address: "456 Innovation Ave, Abu Dhabi, UAE",
     createdAt: "2024-02-20T10:00:00Z"
+  },
+  {
+    id: 3,
+    name: "Michael Davis",
+    email: "mike@globaltech.com",
+    phone: "+1 (555) 555-6666",
+    company: "Global Tech Ltd",
+    address: "789 Tech Park, Sharjah, UAE",
+    createdAt: "2024-03-10T12:00:00Z"
   }
 ];
 
@@ -169,10 +199,11 @@ const initialInvoices: Invoice[] = [
     invoiceNumber: "INV-2024-001",
     amount: "AED 25,000",
     status: "Sent",
-    dueDate: "2024-07-15",
+    dueDate: "2024-06-25",
     items: [
       { id: 1, description: "Consulting Services", quantity: 1, rate: 25000, amount: 25000 }
     ],
+    notes: "First quarter consulting services",
     createdAt: "2024-06-15T09:00:00Z"
   },
   {
@@ -181,11 +212,38 @@ const initialInvoices: Invoice[] = [
     invoiceNumber: "INV-2024-002",
     amount: "AED 18,500",
     status: "Draft",
-    dueDate: "2024-07-30",
+    dueDate: "2024-06-30",
     items: [
       { id: 1, description: "Development Services", quantity: 1, rate: 18500, amount: 18500 }
     ],
+    notes: "Web development project milestone 1",
     createdAt: "2024-06-16T11:00:00Z"
+  },
+  {
+    id: 3,
+    clientId: 3,
+    invoiceNumber: "INV-2024-003",
+    amount: "AED 12,000",
+    status: "Overdue",
+    dueDate: "2024-06-20",
+    items: [
+      { id: 1, description: "Maintenance Services", quantity: 1, rate: 12000, amount: 12000 }
+    ],
+    notes: "Monthly maintenance - urgent payment required",
+    createdAt: "2024-06-01T10:00:00Z"
+  },
+  {
+    id: 4,
+    clientId: 1,
+    invoiceNumber: "INV-2024-004",
+    amount: "AED 8,750",
+    status: "Paid",
+    dueDate: "2024-06-28",
+    items: [
+      { id: 1, description: "Additional Services", quantity: 1, rate: 8750, amount: 8750 }
+    ],
+    notes: "Additional services completed ahead of schedule",
+    createdAt: "2024-06-18T14:00:00Z"
   }
 ];
 
@@ -197,7 +255,8 @@ const initialAppointments: Appointment[] = [
     time: "10:00 AM",
     status: "Confirmed",
     type: "Consultation",
-    clientId: 1
+    clientId: 1,
+    notes: "Discuss new project requirements"
   },
   {
     id: 2,
@@ -207,15 +266,48 @@ const initialAppointments: Appointment[] = [
     status: "Pending",
     type: "Follow-up",
     clientId: 2,
-    leadId: 2
+    leadId: 2,
+    notes: "Review proposal feedback"
   },
   {
     id: 3,
-    client: "Mike Davis",
+    client: "Michael Davis",
     date: "2024-06-18",
     time: "11:30 AM",
     status: "Confirmed",
-    type: "Consultation"
+    type: "Consultation",
+    clientId: 3,
+    notes: "Technical requirements discussion"
+  },
+  {
+    id: 4,
+    client: "Alice Cooper",
+    date: "2024-06-19",
+    time: "9:00 AM",
+    status: "Scheduled",
+    type: "Demo",
+    leadId: 1,
+    notes: "Product demonstration and Q&A"
+  },
+  {
+    id: 5,
+    client: "Bob Wilson",
+    date: "2024-06-20",
+    time: "3:30 PM",
+    status: "Confirmed",
+    type: "Negotiation",
+    leadId: 2,
+    notes: "Contract terms negotiation"
+  },
+  {
+    id: 6,
+    client: "Carol Brown",
+    date: "2024-06-21",
+    time: "1:00 PM",
+    status: "Tentative",
+    type: "Presentation",
+    leadId: 3,
+    notes: "Final proposal presentation"
   }
 ];
 
@@ -228,7 +320,8 @@ const initialContracts: Contract[] = [
     status: "Active",
     startDate: "2024-01-15",
     endDate: "2024-12-15",
-    clientId: 1
+    clientId: 1,
+    notes: "Annual service agreement with quarterly reviews"
   },
   {
     id: 2,
@@ -238,7 +331,8 @@ const initialContracts: Contract[] = [
     status: "Pending",
     startDate: "2024-06-01",
     endDate: "2025-06-01",
-    clientId: 2
+    clientId: 2,
+    notes: "Pending client signature"
   },
   {
     id: 3,
@@ -247,7 +341,29 @@ const initialContracts: Contract[] = [
     value: "AED 45,000",
     status: "Draft",
     startDate: "2024-07-01",
-    endDate: "2024-12-31"
+    endDate: "2024-12-31",
+    notes: "Contract under legal review"
+  },
+  {
+    id: 4,
+    title: "Development Contract - Global Tech",
+    client: "Global Tech Ltd",
+    value: "AED 32,000",
+    status: "Active",
+    startDate: "2024-03-01",
+    endDate: "2024-09-01",
+    clientId: 3,
+    notes: "6-month development project"
+  },
+  {
+    id: 5,
+    title: "Support Agreement - Wilson Corp",
+    client: "Wilson Corp",
+    value: "AED 15,000",
+    status: "Expiring",
+    startDate: "2023-06-25",
+    endDate: "2024-06-25",
+    notes: "Contract expiring soon - renewal needed"
   }
 ];
 
@@ -343,6 +459,12 @@ export const CRMProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
+  const updateAppointment = (id: number, updates: Partial<Appointment>) => {
+    setAppointments(prev => prev.map(appointment => 
+      appointment.id === id ? { ...appointment, ...updates } : appointment
+    ));
+  };
+
   const addContract = (contract: Contract) => {
     setContracts(prev => [...prev, contract]);
     addTimelineEvent({
@@ -351,6 +473,12 @@ export const CRMProvider = ({ children }: { children: ReactNode }) => {
       type: 'created',
       description: `Contract ${contract.title} created`
     });
+  };
+
+  const updateContract = (id: number, updates: Partial<Contract>) => {
+    setContracts(prev => prev.map(contract => 
+      contract.id === id ? { ...contract, ...updates } : contract
+    ));
   };
 
   const getLeadTimeline = (leadId: number) => {
@@ -381,7 +509,9 @@ export const CRMProvider = ({ children }: { children: ReactNode }) => {
       addInvoice,
       updateInvoice,
       addAppointment,
+      updateAppointment,
       addContract,
+      updateContract,
       addTimelineEvent,
       getLeadTimeline,
       getTotalPipelineValue

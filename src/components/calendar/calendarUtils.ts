@@ -9,6 +9,7 @@ export interface CalendarActivity {
   time?: string;
   type: 'appointment' | 'contract' | 'invoice' | 'lead';
   status?: string;
+  notes?: string;
 }
 
 export const getCalendarActivities = (
@@ -31,11 +32,12 @@ export const getCalendarActivities = (
       activities.push({
         id: `appointment-${appointment.id}`,
         title: `${appointment.type}: ${appointment.client}`,
-        description: `Status: ${appointment.status}`,
+        description: `Status: ${appointment.status}${appointment.notes ? ` | ${appointment.notes}` : ''}`,
         date: appointment.date,
         time: appointment.time,
         type: 'appointment',
         status: appointment.status,
+        notes: appointment.notes,
       });
     });
   }
@@ -47,20 +49,22 @@ export const getCalendarActivities = (
       activities.push({
         id: `contract-start-${contract.id}`,
         title: `Contract Start: ${contract.title}`,
-        description: `Value: ${contract.value} | Status: ${contract.status}`,
+        description: `Value: ${contract.value} | Status: ${contract.status}${contract.notes ? ` | ${contract.notes}` : ''}`,
         date: contract.startDate,
         type: 'contract',
         status: contract.status,
+        notes: contract.notes,
       });
 
       // Contract end date
       activities.push({
         id: `contract-end-${contract.id}`,
         title: `Contract End: ${contract.title}`,
-        description: `Value: ${contract.value} | Status: ${contract.status}`,
+        description: `Value: ${contract.value} | Status: ${contract.status}${contract.notes ? ` | ${contract.notes}` : ''}`,
         date: contract.endDate,
         type: 'contract',
         status: contract.status,
+        notes: contract.notes,
       });
     });
   }
@@ -71,10 +75,11 @@ export const getCalendarActivities = (
       activities.push({
         id: `invoice-${invoice.id}`,
         title: `Invoice Due: ${invoice.invoiceNumber}`,
-        description: `Amount: ${invoice.amount} | Status: ${invoice.status}`,
+        description: `Amount: ${invoice.amount} | Status: ${invoice.status}${invoice.notes ? ` | ${invoice.notes}` : ''}`,
         date: invoice.dueDate,
         type: 'invoice',
         status: invoice.status,
+        notes: invoice.notes,
       });
     });
   }
@@ -87,10 +92,11 @@ export const getCalendarActivities = (
       activities.push({
         id: `lead-created-${lead.id}`,
         title: `New Lead: ${lead.name}`,
-        description: `Source: ${lead.source} | Value: ${lead.value}`,
+        description: `Source: ${lead.source} | Value: ${lead.value}${lead.notes ? ` | ${lead.notes}` : ''}`,
         date: createdDate,
         type: 'lead',
         status: lead.status,
+        notes: lead.notes,
       });
 
       // Lead update date (if different from creation)
@@ -99,10 +105,11 @@ export const getCalendarActivities = (
         activities.push({
           id: `lead-updated-${lead.id}`,
           title: `Lead Updated: ${lead.name}`,
-          description: `Status: ${lead.status} | Value: ${lead.value}`,
+          description: `Status: ${lead.status} | Value: ${lead.value}${lead.notes ? ` | ${lead.notes}` : ''}`,
           date: updatedDate,
           type: 'lead',
           status: lead.status,
+          notes: lead.notes,
         });
       }
     });
