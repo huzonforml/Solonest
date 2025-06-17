@@ -208,7 +208,7 @@ export function AppSidebar() {
                   ))}
                 </SidebarMenu>
               </SidebarGroupContent>
-            </Collapsible>
+            </CollapsibleContent>
           </Collapsible>
         </SidebarGroup>
       </SidebarContent>
