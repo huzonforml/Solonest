@@ -95,7 +95,7 @@ export function AppSidebar() {
           <div className="flex items-center justify-center gap-3 mb-2">
             <div className="w-10 h-10 flex items-center justify-center">
               <img 
-                src="https://i.ibb.co/rGNSrcS/logo.png" 
+                src="https://i.postimg.cc/MHySpVVg/Screenshot-2025-06-16-at-1-29-57-PM.png" 
                 alt="Solonest Logo" 
                 className="w-8 h-8 object-contain"
                 onError={handleLogoError}
