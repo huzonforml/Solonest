@@ -45,6 +45,13 @@
     --sidebar-accent-foreground: 240 6% 25%;
     --sidebar-border: 240 6% 82%;
     --sidebar-ring: 95 32% 44%;
+
+    /* New improved color variables */
+    --text-primary: #1C1C1E;
+    --text-secondary: #2D2D2D;
+    --text-tertiary: #666666;
+    --text-muted: #7A7A7A;
+    --bg-stage: #F8F9FA;
   }
 }
 
@@ -73,5 +80,76 @@
   
   .neo-input {
     @apply bg-neo-200 rounded-xl shadow-neo-inset border-0 focus:shadow-neo-pressed transition-all duration-150;
+  }
+
+  /* Pipeline stage cards with improved styling */
+  .pipeline-card {
+    @apply neo-card p-5 hover:shadow-neo-outset transition-all duration-200 cursor-pointer relative;
+  }
+
+  .pipeline-card::before {
+    content: '';
+    @apply absolute left-0 top-0 bottom-0 w-1 rounded-l-2xl;
+  }
+
+  .pipeline-card-new::before {
+    @apply bg-gray-500;
+  }
+
+  .pipeline-card-qualified::before {
+    @apply bg-blue-500;
+  }
+
+  .pipeline-card-proposal::before {
+    @apply bg-amber-500;
+  }
+
+  .pipeline-card-negotiation::before {
+    @apply bg-red-500;
+  }
+
+  .pipeline-card-closed::before {
+    @apply bg-green-500;
+  }
+
+  /* Status button improvements */
+  .status-btn-qualified {
+    @apply bg-blue-500 hover:bg-blue-600 text-white border-0 transition-all duration-200;
+  }
+
+  .status-btn-proposal {
+    @apply bg-amber-500 hover:bg-amber-600 text-white border-0 transition-all duration-200;
+  }
+
+  .status-btn-negotiation {
+    @apply bg-red-500 hover:bg-red-600 text-white border-0 transition-all duration-200;
+  }
+
+  .status-btn-closed {
+    @apply bg-green-500 hover:bg-green-600 text-white border-0 transition-all duration-200;
+  }
+
+  /* Text hierarchy classes */
+  .text-primary-heading {
+    color: var(--text-primary);
+    @apply font-bold;
+  }
+
+  .text-section-header {
+    color: var(--text-secondary);
+    @apply font-semibold;
+  }
+
+  .text-client-name {
+    color: var(--text-secondary);
+    @apply font-semibold;
+  }
+
+  .text-label {
+    color: var(--text-tertiary);
+  }
+
+  .text-secondary-info {
+    color: var(--text-muted);
   }
 }

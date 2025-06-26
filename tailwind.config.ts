@@ -73,6 +73,15 @@ export default {
   				"700": "#4a6b4c",
   				"800": "#375137",
   				"900": "#243622"
+  			},
+  			text: {
+  				primary: "#1C1C1E",
+  				secondary: "#2D2D2D",
+  				tertiary: "#666666",
+  				muted: "#7A7A7A"
+  			},
+  			stage: {
+  				bg: "#F8F9FA"
   			}
   		},
   		borderRadius: {
@@ -106,7 +115,8 @@ export default {
   			"neo-inset": "inset 6px 6px 12px #d1d1d6, inset -6px -6px 12px #f5f5f8",
   			"neo-outset": "6px 6px 12px #d1d1d6, -6px -6px 12px #f5f5f8",
   			"neo-pressed": "inset 4px 4px 8px #d1d1d6, inset -4px -4px 8px #f5f5f8",
-  			"neo-flat": "2px 2px 4px #d1d1d6, -2px -2px 4px #f5f5f8"
+  			"neo-flat": "2px 2px 4px #d1d1d6, -2px -2px 4px #f5f5f8",
+  			"neo-glow": "0 0 20px rgba(95, 133, 97, 0.3)"
   		}
   	}
   },

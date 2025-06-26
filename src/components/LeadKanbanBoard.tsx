@@ -11,11 +11,32 @@ import { AddLeadForm } from "./AddLeadForm";
 const statusColumns: LeadStatus[] = ['New Leads', 'Qualified', 'Proposal Sent', 'Negotiation', 'Closed'];
 
 const statusColors = {
-  'New Leads': 'bg-blue-100 text-blue-800',
-  'Qualified': 'bg-green-100 text-green-800',
-  'Proposal Sent': 'bg-yellow-100 text-yellow-800',
-  'Negotiation': 'bg-orange-100 text-orange-800',
-  'Closed': 'bg-purple-100 text-purple-800'
+  'New Leads': 'bg-gray-100 text-gray-800 border-gray-200',
+  'Qualified': 'bg-blue-100 text-blue-800 border-blue-200',
+  'Proposal Sent': 'bg-amber-100 text-amber-800 border-amber-200',
+  'Negotiation': 'bg-red-100 text-red-800 border-red-200',
+  'Closed': 'bg-green-100 text-green-800 border-green-200'
+};
+
+const getStatusButtonClass = (status: LeadStatus) => {
+  switch (status) {
+    case 'Qualified': return 'status-btn-qualified';
+    case 'Proposal Sent': return 'status-btn-proposal';
+    case 'Negotiation': return 'status-btn-negotiation';
+    case 'Closed': return 'status-btn-closed';
+    default: return 'bg-gray-500 hover:bg-gray-600 text-white';
+  }
+};
+
+const getCardClass = (status: LeadStatus) => {
+  switch (status) {
+    case 'New Leads': return 'pipeline-card pipeline-card-new';
+    case 'Qualified': return 'pipeline-card pipeline-card-qualified';
+    case 'Proposal Sent': return 'pipeline-card pipeline-card-proposal';
+    case 'Negotiation': return 'pipeline-card pipeline-card-negotiation';
+    case 'Closed': return 'pipeline-card pipeline-card-closed';
+    default: return 'pipeline-card';
+  }
 };
 
 export function LeadKanbanBoard() {
@@ -40,26 +61,26 @@ export function LeadKanbanBoard() {
   const totalPipeline = getTotalPipelineValue();
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Header with Pipeline Value */}
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-2xl font-bold text-neo-600">Leads Pipeline</h2>
-          <p className="text-lg font-semibold text-neo-500">
-            Total Pipeline Value: <span className="text-green-600">AED {totalPipeline.toLocaleString()}</span>
+          <h2 className="text-3xl font-bold text-primary-heading mb-2">Leads Pipeline</h2>
+          <p className="text-xl font-semibold text-section-header">
+            Total Pipeline Value: <span className="text-green-600 font-bold">AED {totalPipeline.toLocaleString()}</span>
           </p>
         </div>
         <Button 
           onClick={() => setShowAddForm(true)}
-          className="neo-button bg-neo-600 text-neo-100 hover:bg-neo-700"
+          className="neo-button bg-neo-600 text-neo-100 hover:bg-neo-700 hover:shadow-neo-glow px-6 py-3"
         >
-          <Plus size={16} />
+          <Plus size={18} />
           Add Lead
         </Button>
       </div>
 
       {/* Kanban Board */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 overflow-x-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 overflow-x-auto">
         {statusColumns.map((status) => {
           const statusLeads = getLeadsByStatus(status);
           const statusValue = statusLeads.reduce((sum, lead) => {
@@ -68,25 +89,25 @@ export function LeadKanbanBoard() {
           }, 0);
 
           return (
-            <div key={status} className="min-w-[300px]">
-              <div className="neo-card p-4 mb-4">
-                <div className="flex justify-between items-center mb-2">
-                  <h3 className="font-semibold text-neo-500">{status}</h3>
-                  <Badge variant="secondary" className={statusColors[status]}>
+            <div key={status} className="min-w-[320px]">
+              <div className="neo-card p-5 mb-4 bg-stage-bg border border-gray-100">
+                <div className="flex justify-between items-center mb-3">
+                  <h3 className="text-lg font-bold text-primary-heading">{status}</h3>
+                  <Badge variant="secondary" className={`${statusColors[status]} font-semibold px-3 py-1`}>
                     {statusLeads.length}
                   </Badge>
                 </div>
-                <p className="text-sm text-neo-400">
+                <p className="text-base font-semibold text-section-header">
                   AED {statusValue.toLocaleString()}
                 </p>
               </div>
 
-              <div className="space-y-3 max-h-[600px] overflow-y-auto">
+              <div className="space-y-4 max-h-[600px] overflow-y-auto pr-2">
                 {statusLeads.map((lead) => (
-                  <Card key={lead.id} className="neo-card hover:shadow-neo-outset transition-all duration-200 cursor-pointer">
-                    <CardHeader className="pb-2">
+                  <Card key={lead.id} className={getCardClass(lead.status)}>
+                    <CardHeader className="pb-3">
                       <div className="flex justify-between items-start">
-                        <CardTitle className="text-sm font-medium text-neo-500">
+                        <CardTitle className="text-base font-semibold text-client-name">
                           {lead.name}
                         </CardTitle>
                         <div className="flex gap-1">
@@ -97,7 +118,7 @@ export function LeadKanbanBoard() {
                               e.stopPropagation();
                               handleLeadClick(lead);
                             }}
-                            className="h-6 w-6 p-0"
+                            className="h-7 w-7 p-0 hover:bg-gray-100"
                           >
                             <Eye size={14} />
                           </Button>
@@ -105,26 +126,25 @@ export function LeadKanbanBoard() {
                       </div>
                     </CardHeader>
                     <CardContent className="pt-0">
-                      <div className="space-y-1 text-xs text-neo-400">
-                        <p>{lead.company}</p>
-                        <p>{lead.email}</p>
-                        <p className="font-medium text-neo-500">{lead.value}</p>
-                        <p className="text-neo-400">{lead.source}</p>
+                      <div className="space-y-2 text-sm">
+                        <p className="text-label font-medium">{lead.company}</p>
+                        <p className="text-secondary-info">{lead.email}</p>
+                        <p className="text-lg font-bold text-section-header">{lead.value}</p>
+                        <p className="text-secondary-info">{lead.source}</p>
                       </div>
                       
                       {/* Status Change Buttons */}
                       {status !== 'Closed' && (
-                        <div className="mt-3 flex gap-1 flex-wrap">
+                        <div className="mt-4 flex gap-2 flex-wrap">
                           {statusColumns.slice(statusColumns.indexOf(status) + 1).map((nextStatus) => (
                             <Button
                               key={nextStatus}
                               size="sm"
-                              variant="outline"
                               onClick={(e) => {
                                 e.stopPropagation();
                                 handleStatusChange(lead.id, nextStatus);
                               }}
-                              className="text-xs h-6 px-2"
+                              className={`text-xs h-7 px-3 font-medium ${getStatusButtonClass(nextStatus)}`}
                             >
                               → {nextStatus}
                             </Button>
