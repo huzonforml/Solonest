@@ -79,21 +79,21 @@ const Calendar = () => {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center gap-3 mb-8">
+    <div className="space-y-4 sm:space-y-6">
+      <div className="flex items-center gap-3 mb-6 lg:mb-8">
         <div className="neo-card p-3">
-          <CalendarDays className="w-6 h-6 text-neo-600" />
+          <CalendarDays className="w-5 h-5 sm:w-6 sm:h-6 text-neo-600" />
         </div>
         <div>
-          <h2 className="text-3xl font-bold text-neo-600">Calendar</h2>
-          <p className="text-neo-500">View all your CRM activities in one place</p>
+          <h2 className="text-2xl sm:text-3xl font-bold text-neo-600">Calendar</h2>
+          <p className="text-sm sm:text-base text-neo-500">View all your CRM activities in one place</p>
         </div>
       </div>
 
-      <div className="neo-card p-6">
+      <div className="neo-card p-4 sm:p-6">
         {/* Calendar Controls */}
-        <div className="flex justify-between items-center mb-6">
-          <div className="flex items-center gap-4">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
             <div className="flex items-center gap-2">
               <Button
                 variant="outline"
@@ -120,7 +120,7 @@ const Calendar = () => {
                 Today
               </Button>
             </div>
-            <h3 className="text-xl font-semibold text-neo-600">{formatDateHeader()}</h3>
+            <h3 className="text-lg sm:text-xl font-semibold text-neo-600">{formatDateHeader()}</h3>
           </div>
 
           <div className="flex items-center gap-2">

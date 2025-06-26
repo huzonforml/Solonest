@@ -61,26 +61,26 @@ export function LeadKanbanBoard() {
   const totalPipeline = getTotalPipelineValue();
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 lg:space-y-8">
       {/* Header with Pipeline Value */}
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
         <div>
-          <h2 className="text-3xl font-bold text-primary-heading mb-2">Leads Pipeline</h2>
-          <p className="text-xl font-semibold text-section-header">
+          <h2 className="text-2xl lg:text-3xl font-bold text-primary-heading mb-2">Leads Pipeline</h2>
+          <p className="text-lg lg:text-xl font-semibold text-section-header">
             Total Pipeline Value: <span className="text-green-600 font-bold">AED {totalPipeline.toLocaleString()}</span>
           </p>
         </div>
         <Button 
           onClick={() => setShowAddForm(true)}
-          className="neo-button bg-neo-600 text-neo-100 hover:bg-neo-700 hover:shadow-neo-glow px-6 py-3"
+          className="neo-button bg-neo-600 text-neo-100 hover:bg-neo-700 hover:shadow-neo-glow px-4 sm:px-6 py-2 sm:py-3 w-full sm:w-auto"
         >
           <Plus size={18} />
           Add Lead
         </Button>
       </div>
 
-      {/* Kanban Board */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 overflow-x-auto">
+      {/* Mobile Stack View for smaller screens */}
+      <div className="block lg:hidden space-y-6">
         {statusColumns.map((status) => {
           const statusLeads = getLeadsByStatus(status);
           const statusValue = statusLeads.reduce((sum, lead) => {
@@ -89,8 +89,8 @@ export function LeadKanbanBoard() {
           }, 0);
 
           return (
-            <div key={status} className="min-w-[320px]">
-              <div className="neo-card p-5 mb-4 bg-stage-bg border border-gray-100">
+            <div key={status} className="w-full">
+              <div className="neo-card p-4 mb-4 bg-stage-bg border border-gray-100">
                 <div className="flex justify-between items-center mb-3">
                   <h3 className="text-lg font-bold text-primary-heading">{status}</h3>
                   <Badge variant="secondary" className={`${statusColors[status]} font-semibold px-3 py-1`}>
@@ -102,7 +102,7 @@ export function LeadKanbanBoard() {
                 </p>
               </div>
 
-              <div className="space-y-4 max-h-[600px] overflow-y-auto pr-2">
+              <div className="space-y-4">
                 {statusLeads.map((lead) => (
                   <Card key={lead.id} className={getCardClass(lead.status)}>
                     <CardHeader className="pb-3">
@@ -128,7 +128,7 @@ export function LeadKanbanBoard() {
                     <CardContent className="pt-0">
                       <div className="space-y-2 text-sm">
                         <p className="text-label font-medium">{lead.company}</p>
-                        <p className="text-secondary-info">{lead.email}</p>
+                        <p className="text-secondary-info break-all">{lead.email}</p>
                         <p className="text-lg font-bold text-section-header">{lead.value}</p>
                         <p className="text-secondary-info">{lead.source}</p>
                       </div>
@@ -144,9 +144,9 @@ export function LeadKanbanBoard() {
                                 e.stopPropagation();
                                 handleStatusChange(lead.id, nextStatus);
                               }}
-                              className={`text-xs h-7 px-3 font-medium ${getStatusButtonClass(nextStatus)}`}
+                              className={`text-xs h-7 px-2 sm:px-3 font-medium ${getStatusButtonClass(nextStatus)}`}
                             >
-                              → {nextStatus}
+                              → {nextStatus.replace(' ', '\n')}
                             </Button>
                           ))}
                         </div>
@@ -158,6 +158,89 @@ export function LeadKanbanBoard() {
             </div>
           );
         })}
+      </div>
+
+      {/* Desktop Kanban Board - hidden on mobile */}
+      <div className="hidden lg:block">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 overflow-x-auto">
+          {statusColumns.map((status) => {
+            const statusLeads = getLeadsByStatus(status);
+            const statusValue = statusLeads.reduce((sum, lead) => {
+              const value = parseFloat(lead.value.replace(/[^\d.]/g, ''));
+              return sum + (isNaN(value) ? 0 : value);
+            }, 0);
+
+            return (
+              <div key={status} className="min-w-[320px]">
+                <div className="neo-card p-5 mb-4 bg-stage-bg border border-gray-100">
+                  <div className="flex justify-between items-center mb-3">
+                    <h3 className="text-lg font-bold text-primary-heading">{status}</h3>
+                    <Badge variant="secondary" className={`${statusColors[status]} font-semibold px-3 py-1`}>
+                      {statusLeads.length}
+                    </Badge>
+                  </div>
+                  <p className="text-base font-semibold text-section-header">
+                    AED {statusValue.toLocaleString()}
+                  </p>
+                </div>
+
+                <div className="space-y-4 max-h-[600px] overflow-y-auto pr-2">
+                  {statusLeads.map((lead) => (
+                    <Card key={lead.id} className={getCardClass(lead.status)}>
+                      <CardHeader className="pb-3">
+                        <div className="flex justify-between items-start">
+                          <CardTitle className="text-base font-semibold text-client-name">
+                            {lead.name}
+                          </CardTitle>
+                          <div className="flex gap-1">
+                            <Button
+                              size="sm"
+                              variant="ghost"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleLeadClick(lead);
+                              }}
+                              className="h-7 w-7 p-0 hover:bg-gray-100"
+                            >
+                              <Eye size={14} />
+                            </Button>
+                          </div>
+                        </div>
+                      </CardHeader>
+                      <CardContent className="pt-0">
+                        <div className="space-y-2 text-sm">
+                          <p className="text-label font-medium">{lead.company}</p>
+                          <p className="text-secondary-info">{lead.email}</p>
+                          <p className="text-lg font-bold text-section-header">{lead.value}</p>
+                          <p className="text-secondary-info">{lead.source}</p>
+                        </div>
+                        
+                        {/* Status Change Buttons */}
+                        {status !== 'Closed' && (
+                          <div className="mt-4 flex gap-2 flex-wrap">
+                            {statusColumns.slice(statusColumns.indexOf(status) + 1).map((nextStatus) => (
+                              <Button
+                                key={nextStatus}
+                                size="sm"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleStatusChange(lead.id, nextStatus);
+                                }}
+                                className={`text-xs h-7 px-3 font-medium ${getStatusButtonClass(nextStatus)}`}
+                              >
+                                → {nextStatus}
+                              </Button>
+                            ))}
+                          </div>
+                        )}
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
 
       {/* Modals */}
