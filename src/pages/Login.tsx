@@ -38,7 +38,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-neo-200 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gray-200 flex items-center justify-center p-4">
       <Card className="neo-card w-full max-w-md">
         <CardHeader className="text-center">
           <div className="neo-card p-3 w-fit mx-auto mb-4">
