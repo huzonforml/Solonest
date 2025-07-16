@@ -42,9 +42,9 @@ const Login = () => {
       <Card className="neo-card w-full max-w-md">
         <CardHeader className="text-center">
           <div className="neo-card p-3 w-fit mx-auto mb-4">
-            <LogIn className="w-6 h-6 text-gray-600" />
+            <LogIn className="w-6 h-6 text-neo-600" />
           </div>
-          <CardTitle className="text-2xl font-bold text-gray-700">Welcome Back</CardTitle>
+          <CardTitle className="text-2xl font-bold text-neo-700">Welcome Back</CardTitle>
           <p className="text-neo-500">Sign in to your Solonest account</p>
         </CardHeader>
         <CardContent>
@@ -93,7 +93,7 @@ const Login = () => {
           <div className="mt-6 text-center">
             <p className="text-neo-500 text-sm">
               Don't have an account?{" "}
-              <Link to="/register" className="text-gray-700 hover:underline font-medium">
+              <Link to="/register" className="text-neo-700 hover:underline font-medium">
                 Sign up
               </Link>
             </p>
