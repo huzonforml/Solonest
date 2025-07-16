@@ -115,7 +115,7 @@ export function AppSidebar() {
             </div>
             <h2 className="text-xl font-bold text-neo-900">SOLONEST</h2>
           </div>
-          <p className="text-sm text-neo-700 mt-1">Business Management Suite</p>
+          <p className="text-sm text-foreground/80 mt-1">Business Management Suite</p>
         </div>
       </SidebarHeader>
       <SidebarContent>
@@ -132,10 +132,9 @@ export function AppSidebar() {
                     asChild
                     className={`neo-button p-3 w-full justify-start gap-3 ${
                       location.pathname === item.url
-                        ? "neo-card-pressed text-neo-900 font-semibold border-l-4 border-neo-800"
+                        ? "neo-card-pressed text-neo-900 font-semibold"
                         : "text-neo-700 hover:text-neo-900 hover:bg-neo-300"
                     }`}
-
                   >
                     <Link to={item.url}>
                       <item.icon size={20} />
