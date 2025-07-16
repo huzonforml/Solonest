@@ -85,7 +85,7 @@ const Login = () => {
             <Button
               type="submit"
               disabled={isLoading}
-              className="gray-button w-full"
+              className="neo-button w-full"
             >
               {isLoading ? "Signing in..." : "Sign In"}
             </Button>

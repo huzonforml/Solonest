@@ -75,7 +75,7 @@
   }
   
   .neo-button {
-    @apply bg-neo-200 rounded-xl shadow-neo-flat hover:shadow-neo-outset active:shadow-neo-pressed transition-all duration-150;
+    @apply bg-gray-200 rounded-xl shadow-neo-flat hover:shadow-neo-outset active:shadow-neo-pressed transition-all duration-150;
   }
   
   .neo-input {
