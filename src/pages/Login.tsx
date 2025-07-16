@@ -38,11 +38,11 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-200 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-neo-200 flex items-center justify-center p-4">
       <Card className="neo-card w-full max-w-md">
         <CardHeader className="text-center">
           <div className="neo-card p-3 w-fit mx-auto mb-4">
-            <LogIn className="w-6 h-6 text-neo-600" />
+            <LogIn className="w-6 h-6 text-gray-600" />
           </div>
           <CardTitle className="text-2xl font-bold text-gray-700">Welcome Back</CardTitle>
           <p className="text-neo-500">Sign in to your Solonest account</p>
@@ -85,7 +85,7 @@ const Login = () => {
             <Button
               type="submit"
               disabled={isLoading}
-              className="neo-button w-full"
+              className="gray-button w-full"
             >
               {isLoading ? "Signing in..." : "Sign In"}
             </Button>
@@ -93,7 +93,7 @@ const Login = () => {
           <div className="mt-6 text-center">
             <p className="text-neo-500 text-sm">
               Don't have an account?{" "}
-              <Link to="/register" className="text-neo-700 hover:underline font-medium">
+              <Link to="/register" className="text-gray-700 hover:underline font-medium">
                 Sign up
               </Link>
             </p>
