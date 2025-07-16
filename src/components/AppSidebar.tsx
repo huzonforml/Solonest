@@ -132,9 +132,10 @@ export function AppSidebar() {
                     asChild
                     className={`neo-button p-3 w-full justify-start gap-3 ${
                       location.pathname === item.url
-                        ? "neo-card-pressed text-neo-900 font-semibold"
+                        ? "neo-card-pressed text-neo-900 font-semibold border-l-4 border-neo-800"
                         : "text-neo-700 hover:text-neo-900 hover:bg-neo-300"
                     }`}
+
                   >
                     <Link to={item.url}>
                       <item.icon size={20} />
