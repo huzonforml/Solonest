@@ -104,7 +104,8 @@ export default {
       },
       boxShadow: {
         "neo-inset": "inset 3px 3px 6px #d1d1d6, inset -3px -3px 6px #f5f5f8",
-        "neo-outset": "6px 6px 12px #d1d1d6, -6px -6px 12px #f5f5f8",
+      //  "neo-outset": "6px 6px 12px #d1d1d6, -6px -6px 12px #f5f5f8",
+        "neo-outset": "6px 6px 10px rgba(0, 0, 0, 0.08), -6px -6px 10px rgba(255, 255, 255, 0.6)",
         "neo-pressed": "inset 4px 4px 8px #d1d1d6, inset -4px -4px 8px #f5f5f8",
         "neo-flat": "2px 2px 4px #d1d1d6, -2px -2px 4px #f5f5f8",
         "neo-glow": "0 0 20px rgba(130, 130, 130, 0.3)" // changed from greenish to neutral gray
