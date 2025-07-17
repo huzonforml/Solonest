@@ -74,7 +74,7 @@ export function UserMenu() {
       {/* Logout Button */}
       <Button
         onClick={handleLogout}
-        className="neo-button w-full bg-red-500 text-white hover:bg-red-600 border-red-400"
+        className="neo-button w-full bg-neo-500 text-white hover:bg-neo-600 border-neo-400"
         variant="outline"
       >
         <LogOut size={16} />
