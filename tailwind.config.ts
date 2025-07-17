@@ -103,7 +103,7 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out"
       },
       boxShadow: {
-        "neo-inset": "inset 6px 6px 12px #616166, inset -6px -6px 12px #d5d5d8",
+        "neo-inset": "inset 3px 3px 6px #d1d1d6, inset -3px -3px 6px #f5f5f8",
         "neo-outset": "6px 6px 12px #d1d1d6, -6px -6px 12px #f5f5f8",
         "neo-pressed": "inset 4px 4px 8px #d1d1d6, inset -4px -4px 8px #f5f5f8",
         "neo-flat": "2px 2px 4px #d1d1d6, -2px -2px 4px #f5f5f8",
