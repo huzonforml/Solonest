@@ -66,7 +66,7 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
         <Card className="neo-card">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-neo-900">Total Leads</CardTitle>
+            <CardTitle className="text-sm font-medium text-neo-900">Total Leadsa</CardTitle>
             <Users className="h-4 w-4 text-neo-700" />
           </CardHeader>
           <CardContent>
