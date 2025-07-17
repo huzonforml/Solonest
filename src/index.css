@@ -67,7 +67,7 @@
 
 @layer components {
   .neo-card {
-    @apply bg-neo-200 rounded-2xl shadow-black-inset transition-all duration-200;
+    @apply bg-neo-200 rounded-2xl shadow-neo-inset transition-all duration-200;
   }
   
   .neo-card-pressed {
