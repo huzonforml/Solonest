@@ -17,13 +17,13 @@ const Index = () => {
               <Calendar className="w-8 h-8 text-neo-600" />
             </div>
             <div>
-              <h3 className="text-xl font-semibold text-neo-500">Appointments</h3>
-              <p className="text-neo-400">Manage meetings</p>
+              <h3 className="text-xl font-semibold text-neo-800">Appointments</h3>
+              <p className="text-neo-600">Manage meetings</p>
             </div>
           </div>
           <div className="text-right">
-            <p className="text-2xl font-bold text-neo-500">3</p>
-            <p className="text-neo-400 text-sm">Today</p>
+            <p className="text-2xl font-bold text-neo-700">3</p>
+            <p className="text-neo-600 text-sm">Today</p>
           </div>
         </Link>
 
