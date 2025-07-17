@@ -33,13 +33,13 @@ const Index = () => {
               <Users className="w-8 h-8 text-neo-600" />
             </div>
             <div>
-              <h3 className="text-xl font-semibold text-neo-500">Leads</h3>
-              <p className="text-neo-400">Track prospects</p>
+              <h3 className="text-xl font-semibold text-neo-800">Leads</h3>
+              <p className="text-neo-600">Track prospects</p>
             </div>
           </div>
           <div className="text-right">
-            <p className="text-2xl font-bold text-neo-500">12</p>
-            <p className="text-neo-400 text-sm">Active</p>
+            <p className="text-2xl font-bold text-neo-700">12</p>
+            <p className="text-neo-600 text-sm">Active</p>
           </div>
         </Link>
 
@@ -49,13 +49,13 @@ const Index = () => {
               <FileText className="w-8 h-8 text-neo-600" />
             </div>
             <div>
-              <h3 className="text-xl font-semibold text-neo-500">Contracts</h3>
-              <p className="text-neo-400">Manage agreements</p>
+              <h3 className="text-xl font-semibold text-neo-800">Contracts</h3>
+              <p className="text-neo-600">Manage agreements</p>
             </div>
           </div>
           <div className="text-right">
-            <p className="text-2xl font-bold text-neo-500">8</p>
-            <p className="text-neo-400 text-sm">Total</p>
+            <p className="text-2xl font-bold text-neo-700">8</p>
+            <p className="text-neo-600 text-sm">Total</p>
           </div>
         </Link>
       </div>
