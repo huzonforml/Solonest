@@ -65,18 +65,18 @@ const Index = () => {
         <div className="space-y-3">
           <div className="flex items-center gap-3 p-3 neo-card">
             <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-            <p className="text-neo-500">New appointment scheduled with John Smith</p>
-            <span className="text-neo-400 text-sm ml-auto">2 min ago</span>
+            <p className="text-neo-700">New appointment scheduled with John Smith</p>
+            <span className="text-neo-600 text-sm ml-auto">2 min ago</span>
           </div>
           <div className="flex items-center gap-3 p-3 neo-card">
             <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-            <p className="text-neo-500">Lead Alice Cooper marked as hot</p>
-            <span className="text-neo-400 text-sm ml-auto">15 min ago</span>
+            <p className="text-neo-700">Lead Alice Cooper marked as hot</p>
+            <span className="text-neo-600 text-sm ml-auto">15 min ago</span>
           </div>
           <div className="flex items-center gap-3 p-3 neo-card">
             <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-            <p className="text-neo-500">Contract with TechCorp activated</p>
-            <span className="text-neo-400 text-sm ml-auto">1 hour ago</span>
+            <p className="text-neo-700">Contract with TechCorp activated</p>
+            <span className="text-neo-600 text-sm ml-auto">1 hour ago</span>
           </div>
         </div>
       </div>
