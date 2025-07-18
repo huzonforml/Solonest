@@ -90,7 +90,7 @@ export function LeadKanbanBoard() {
 
           return (
             <div key={status} className="w-full">
-              <div className="neo-card p-4 mb-4 bg-stage-bg border border-gray-100">
+              <div className="neo-card p-4 p-x-2 mb-4 bg-stage-bg border border-gray-100">
                 <div className="flex justify-between items-center mb-3">
                   <h3 className="text-lg font-bold text-primary-heading">{status}</h3>
                   <Badge variant="secondary" className={`${statusColors[status]} font-semibold px-3 py-1`}>
