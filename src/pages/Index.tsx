@@ -6,7 +6,7 @@ const Index = () => {
   return (
     <div className="space-y-6">
       <div className="mb-8">
-        <h2 className="text-3xl font-bold text-neo-600 mb-2">Welcome to Solonest</h2>
+        <h2 className="text-3xl font-bold text-neo-600 mb-2">Welcome to solonest</h2>
         <p className="text-neo-500">Manage your business relationships efficiently</p>
       </div>
 
