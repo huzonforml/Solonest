@@ -113,7 +113,7 @@ export function AppSidebar() {
                 S
               </div>
             </div>
-            <h2 className="text-xl font-bold text-neo-900">SOLONEST</h2>
+            <h2 className="text-xl font-bold text-neo-900">solonest</h2>
           </div>
           <p className="text-sm text-foreground/80 mt-1">Business Management Suite</p>
         </div>
