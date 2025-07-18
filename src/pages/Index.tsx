@@ -1,5 +1,5 @@
 
-import { Calendar, Users, FileText } from "lucide-react";
+import { Users, FileText } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Index = () => {
@@ -10,22 +10,7 @@ const Index = () => {
         <p className="text-neo-500">Manage your business relationships efficiently</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Link to="/appointments" className="neo-card p-6 hover:shadow-neo-outset transition-all duration-200 group">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="neo-card p-3 group-hover:shadow-neo-pressed transition-all duration-200">
-              <Calendar className="w-8 h-8 text-neo-600" />
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold text-neo-800">Appointments</h3>
-              <p className="text-neo-600">Manage meetings</p>
-            </div>
-          </div>
-          <div className="text-right">
-            <p className="text-2xl font-bold text-neo-700">3</p>
-            <p className="text-neo-600 text-sm">Today</p>
-          </div>
-        </Link>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
         <Link to="/leads" className="neo-card p-6 hover:shadow-neo-outset transition-all duration-200 group">
           <div className="flex items-center gap-4 mb-4">
