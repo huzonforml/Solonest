@@ -16,12 +16,11 @@ interface ActivityEditModalProps {
 }
 
 export const ActivityEditModal = ({ activity, isOpen, onClose }: ActivityEditModalProps) => {
-  const { updateAppointment, updateContract, updateInvoice } = useCRM();
+  const { updateContract, updateInvoice } = useCRM();
   const [editData, setEditData] = useState({
     title: activity?.title || "",
     notes: activity?.description || "",
     status: activity?.status || "",
-    time: activity?.time || "",
   });
 
   const handleSave = () => {
@@ -30,13 +29,6 @@ export const ActivityEditModal = ({ activity, isOpen, onClose }: ActivityEditMod
     const id = parseInt(activity.id.split('-')[1]);
     
     switch (activity.type) {
-      case 'appointment':
-        updateAppointment(id, {
-          notes: editData.notes,
-          status: editData.status,
-          time: editData.time,
-        });
-        break;
       case 'contract':
         updateContract(id, {
           notes: editData.notes,
@@ -56,8 +48,6 @@ export const ActivityEditModal = ({ activity, isOpen, onClose }: ActivityEditMod
 
   const getStatusOptions = () => {
     switch (activity?.type) {
-      case 'appointment':
-        return ['Scheduled', 'Confirmed', 'Pending', 'Completed', 'Cancelled'];
       case 'contract':
         return ['Draft', 'Pending', 'Active', 'Expiring', 'Completed'];
       case 'invoice':
@@ -90,18 +80,6 @@ export const ActivityEditModal = ({ activity, isOpen, onClose }: ActivityEditMod
             />
           </div>
 
-          {activity.type === 'appointment' && (
-            <div>
-              <Label htmlFor="time">Time</Label>
-              <Input
-                id="time"
-                type="time"
-                value={editData.time}
-                onChange={(e) => setEditData(prev => ({ ...prev, time: e.target.value }))}
-                className="neo-input"
-              />
-            </div>
-          )}
 
           <div>
             <Label htmlFor="status">Status</Label>
