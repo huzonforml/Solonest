@@ -80,7 +80,7 @@ export function LeadKanbanBoard() {
       </div>
 
       {/* Mobile Stack View for smaller screens */}
-      <div className="block lg:hidden space-y-6">
+      <div className="block lg:hidden space-y-6 space-x-2">
         {statusColumns.map((status) => {
           const statusLeads = getLeadsByStatus(status);
           const statusValue = statusLeads.reduce((sum, lead) => {
@@ -98,7 +98,7 @@ export function LeadKanbanBoard() {
                   </Badge>
                 </div>
                 <p className="text-base font-semibold text-section-header">
-                  AED {statusValue.toLocaleString()} aa
+                  AED {statusValue.toLocaleString()} 
                 </p>
               </div>
 
