@@ -63,7 +63,7 @@ export function LeadKanbanBoard() {
   return (
     <div className="space-y-6 lg:space-y-8">
       {/* Header with Pipeline Value */}
-      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 neo-card">
         <div>
           <h2 className="text-2xl lg:text-3xl font-bold text-primary-heading mb-2">Leads Pipeline</h2>
           <p className="text-lg lg:text-xl font-semibold text-section-header">
@@ -172,7 +172,7 @@ export function LeadKanbanBoard() {
 
             return (
               <div key={status} className="min-w-[320px]">
-                <div className="neo-card p-3 mb-4 bg-stage-bg border border-gray-300">
+                <div className="neo-card p-3 mb-4 bg-stage-bg border border-gray-400">
                   <div className="flex justify-between items-center mb-3">
                     <h3 className="text-lg font-bold text-primary-heading">{status}</h3>
                     <Badge variant="secondary" className={`${statusColors[status]} font-semibold px-3 py-1`}>
