@@ -63,7 +63,7 @@ export function LeadKanbanBoard() {
   return (
     <div className="space-y-6 lg:space-y-8">
       {/* Header with Pipeline Value */}
-      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 neo-card px-2">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 neo-card px-2 border border-gray-300">
         <div>
           <h2 className="text-2xl lg:text-3xl font-bold text-primary-heading mb-2">Leads Pipeline</h2>
           <p className="text-lg lg:text-xl font-semibold text-section-header">
