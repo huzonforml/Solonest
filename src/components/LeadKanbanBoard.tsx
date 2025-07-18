@@ -11,11 +11,11 @@ import { AddLeadForm } from "./AddLeadForm";
 const statusColumns: LeadStatus[] = ['New Leads', 'Qualified', 'Proposal Sent', 'Negotiation', 'Closed'];
 
 const statusColors = {
-  'New Leads': 'bg-gray-400 text-gray-800 border-gray-200 hover:bg-gray-200',
-  'Qualified': 'bg-blue-400 text-blue-800 border-blue-200 hover:bg-blue-200',
-  'Proposal Sent': 'bg-amber-400 text-amber-800 border-amber-200 hover:bg-amber-200',
-  'Negotiation': 'bg-red-400 text-red-800 border-red-200 hover:bg-red-200',
-  'Closed': 'bg-green-400 text-green-800 border-green-200 hover:bg-green-200'
+  'New Leads': 'bg-gray-400 text-gray-800 border-gray-200 hover:bg-gray-300',
+  'Qualified': 'bg-blue-400 text-blue-800 border-blue-200 hover:bg-blue-300',
+  'Proposal Sent': 'bg-amber-400 text-amber-800 border-amber-200 hover:bg-amber-300',
+  'Negotiation': 'bg-red-400 text-red-800 border-red-200 hover:bg-red-300',
+  'Closed': 'bg-green-400 text-green-800 border-green-200 hover:bg-green-300'
 };
 
 const getStatusButtonClass = (status: LeadStatus) => {
