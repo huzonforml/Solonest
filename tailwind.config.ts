@@ -63,15 +63,15 @@ export default {
           ring: "hsl(var(--sidebar-ring))"
         },
         neo: {
-          "100": "#f0f0f3",
-          "200": "#e6e6ea",
-          "300": "#d1d1d6",
-          "400": "#b8b8c0",
-          "500": "#9e9ea7",
-          "600": "#7f7f88",
-          "700": "#636368",
-          "800": "#48484c",
-          "900": "#2e2e31"
+          "100": "#f5f5f8",
+          "200": "#ebebef", 
+          "300": "#d6d6db",
+          "400": "#bdbdc5",
+          "500": "#a3a3ac",
+          "600": "#84848d",
+          "700": "#68686d",
+          "800": "#4d4d52",
+          "900": "#333337"
         },
         text: {
           primary: "#1C1C1E",
@@ -103,12 +103,11 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out"
       },
       boxShadow: {
-        "neo-inset": "inset 3px 3px 6px #d1d1d6, inset -3px -3px 6px #f5f5f8",
-      //  "neo-outset": "6px 6px 12px #d1d1d6, -6px -6px 12px #f5f5f8",
-        "neo-outset": "6px 6px 10px rgba(0, 0, 0, 0.08), -6px -6px 10px rgba(255, 255, 255, 0.6)",
-        "neo-pressed": "inset 4px 4px 8px #d1d1d6, inset -4px -4px 8px #f5f5f8",
-        "neo-flat": "2px 2px 4px #d1d1d6, -2px -2px 4px #f5f5f8",
-        "neo-glow": "0 0 20px rgba(130, 130, 130, 0.3)" // changed from greenish to neutral gray
+        "neo-inset": "inset 3px 3px 6px #d6d6db, inset -3px -3px 6px #ffffff",
+        "neo-outset": "6px 6px 12px #d6d6db, -6px -6px 12px #ffffff",
+        "neo-pressed": "inset 4px 4px 8px #d6d6db, inset -4px -4px 8px #ffffff",
+        "neo-flat": "2px 2px 4px #d6d6db, -2px -2px 4px #ffffff",
+        "neo-glow": "0 0 20px rgba(130, 130, 130, 0.3)"
       }
     }
   },

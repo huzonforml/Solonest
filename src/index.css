@@ -7,7 +7,7 @@
 
 @layer base {
   :root {
-    --background: 240 6% 90%;
+    --background: 240 6% 95%;
     --foreground: 240 6% 20%;
 
     --card: 240 6% 92%;
@@ -37,7 +37,7 @@
 
     --radius: 0.75rem;
 
-    --sidebar-background: 240 6% 90%;
+    --sidebar-background: 240 6% 95%;
     --sidebar-foreground: 240 6% 30%;
     --sidebar-primary: 240 5% 50%;
     --sidebar-primary-foreground: 240 6% 95%;
@@ -61,17 +61,17 @@
   }
 
   body {
-    @apply bg-neo-200 text-foreground font-sans;
+    @apply bg-neo-100 text-foreground font-sans;
   }
 }
 
 @layer components {
   .neo-card {
-    @apply bg-neo-200 rounded-2xl shadow-neo-outset transition-all duration-200;
+    @apply bg-neo-100 rounded-2xl shadow-neo-outset transition-all duration-200;
   }
   
   .neo-card-pressed {
-    @apply bg-neo-200 rounded-2xl shadow-neo-pressed;
+    @apply bg-neo-100 rounded-2xl shadow-neo-pressed;
   }
   
   .neo-button {
@@ -79,7 +79,7 @@
   }
   
   .neo-input {
-    @apply bg-neo-200 rounded-xl shadow-neo-inset border-0 focus:shadow-neo-pressed transition-all duration-150;
+    @apply bg-neo-100 rounded-xl shadow-neo-inset border-0 focus:shadow-neo-pressed transition-all duration-150;
   }
 
   /* Pipeline stage cards with improved styling */
