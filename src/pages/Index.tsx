@@ -28,7 +28,7 @@ const Index = () => {
           </div>
         </Link>
 
-        <Link to="/contracts" className="neo-card p-6 hover:shadow-neo-outset transition-all duration-200 group">
+        <Link to="/contracts" className="neo-card border border-gray-300 p-6 hover:shadow-neo-outset transition-all duration-200 group">
           <div className="flex items-center gap-4 mb-4">
             <div className="neo-card p-3 group-hover:shadow-neo-pressed transition-all duration-200">
               <FileText className="w-8 h-8 text-neo-600" />
@@ -45,7 +45,7 @@ const Index = () => {
         </Link>
       </div>
 
-      <div className="neo-card p-6">
+      <div className="neo-card border border-gray-300 p-6">
         <h3 className="text-xl font-semibold text-neo-600">Recent Activity</h3>
         <div className="space-y-3">
           <div className="flex items-center gap-3 p-3 neo-card">
