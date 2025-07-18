@@ -50,11 +50,6 @@ const crmMenuItems = [
     icon: CalendarDays,
   },
   {
-    title: "Appointments",
-    url: "/appointments",
-    icon: Calendar,
-  },
-  {
     title: "Contracts",
     url: "/contracts",
     icon: FileText,
@@ -64,9 +59,6 @@ const crmMenuItems = [
     url: "/invoices",
     icon: Receipt,
   },
-];
-
-const toolsMenuItems = [
   {
     title: "Portfolio Maker",
     url: "/portfolio-maker",
@@ -82,7 +74,6 @@ const toolsMenuItems = [
 export function AppSidebar() {
   const location = useLocation();
   const [isCRMOpen, setIsCRMOpen] = useState(true);
-  const [isToolsOpen, setIsToolsOpen] = useState(false);
 
   const handleLogoError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     console.log('Logo failed to load, showing fallback');
@@ -182,40 +173,6 @@ export function AppSidebar() {
           </Collapsible>
         </SidebarGroup>
 
-        {/* Tools Section */}
-        <SidebarGroup>
-          <Collapsible open={isToolsOpen} onOpenChange={setIsToolsOpen}>
-            <SidebarGroupLabel className="text-neo-800 font-semibold px-6 py-2">
-              <CollapsibleTrigger className="flex items-center justify-between w-full hover:text-neo-900">
-                Tools
-                <ChevronDown className={`h-4 w-4 transition-transform ${isToolsOpen ? 'rotate-180' : ''}`} />
-              </CollapsibleTrigger>
-            </SidebarGroupLabel>
-            <CollapsibleContent>
-              <SidebarGroupContent className="px-4">
-                <SidebarMenu>
-                  {toolsMenuItems.map((item) => (
-                    <SidebarMenuItem key={item.title} className="mb-2">
-                      <SidebarMenuButton
-                        asChild
-                        className={`neo-button p-3 w-full justify-start gap-3 ${
-                          location.pathname === item.url
-                            ? "neo-card-pressed text-neo-900 font-semibold"
-                            : "text-neo-700 hover:text-neo-900 hover:bg-neo-300"
-                        }`}
-                      >
-                        <Link to={item.url}>
-                          <item.icon size={20} />
-                          <span>{item.title}</span>
-                        </Link>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                  ))}
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </CollapsibleContent>
-          </Collapsible>
-        </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
         <UserMenu />
