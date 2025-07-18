@@ -102,7 +102,7 @@ export function LeadKanbanBoard() {
                 </p>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-4 space-x-2">
                 {statusLeads.map((lead) => (
                   <Card key={lead.id} className={getCardClass(lead.status)}>
                     <CardHeader className="pb-3">
