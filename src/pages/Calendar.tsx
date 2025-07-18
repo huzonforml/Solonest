@@ -85,8 +85,8 @@ const Calendar = () => {
           <CalendarDays className="w-5 h-5 sm:w-6 sm:h-6 text-neo-600" />
         </div>
         <div>
-          <h2 className="text-2xl sm:text-3xl font-bold text-neo-600">Calendar</h2>
-          <p className="text-sm sm:text-base text-neo-500">View all your CRM activities in one place</p>
+          <h2 className="text-2xl sm:text-3xl font-bold text-primary-heading">Calendar</h2>
+          <p className="text-sm sm:text-base text-secondary-info">View all your CRM activities in one place</p>
         </div>
       </div>
 
@@ -120,7 +120,7 @@ const Calendar = () => {
                 Today
               </Button>
             </div>
-            <h3 className="text-lg sm:text-xl font-semibold text-neo-600">{formatDateHeader()}</h3>
+            <h3 className="text-lg sm:text-xl font-semibold text-section-header">{formatDateHeader()}</h3>
           </div>
 
           <div className="flex items-center gap-2">
