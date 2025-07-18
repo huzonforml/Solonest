@@ -63,15 +63,15 @@ export default {
           ring: "hsl(var(--sidebar-ring))"
         },
         neo: {
-          "100": "#f5f5f8",
-          "200": "#ebebef", 
-          "300": "#d6d6db",
-          "400": "#bdbdc5",
-          "500": "#a3a3ac",
-          "600": "#84848d",
-          "700": "#68686d",
-          "800": "#4d4d52",
-          "900": "#333337"
+          "100": "#f8f9fa",
+          "200": "#e9ecef", 
+          "300": "#dee2e6",
+          "400": "#ced4da",
+          "500": "#adb5bd",
+          "600": "#6c757d",
+          "700": "#495057",
+          "800": "#343a40",
+          "900": "#212529"
         },
         text: {
           primary: "#1C1C1E",
@@ -103,11 +103,11 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out"
       },
       boxShadow: {
-        "neo-inset": "inset 3px 3px 6px #d6d6db, inset -3px -3px 6px #ffffff",
-        "neo-outset": "6px 6px 12px #d6d6db, -6px -6px 12px #ffffff",
-        "neo-pressed": "inset 4px 4px 8px #d6d6db, inset -4px -4px 8px #ffffff",
-        "neo-flat": "2px 2px 4px #d6d6db, -2px -2px 4px #ffffff",
-        "neo-glow": "0 0 20px rgba(130, 130, 130, 0.3)"
+        "neo-inset": "inset 4px 4px 8px #dee2e6, inset -4px -4px 8px #ffffff",
+        "neo-outset": "8px 8px 16px #dee2e6, -8px -8px 16px #ffffff",
+        "neo-pressed": "inset 6px 6px 12px #dee2e6, inset -6px -6px 12px #ffffff",
+        "neo-flat": "3px 3px 6px #dee2e6, -3px -3px 6px #ffffff",
+        "neo-glow": "0 0 24px rgba(108, 117, 125, 0.4)"
       }
     }
   },
