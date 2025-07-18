@@ -162,7 +162,7 @@ export function LeadKanbanBoard() {
 
       {/* Desktop Kanban Board - hidden on mobile */}
       <div className="hidden lg:block">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 overflow-x-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-16 overflow-x-auto">
           {statusColumns.map((status) => {
             const statusLeads = getLeadsByStatus(status);
             const statusValue = statusLeads.reduce((sum, lead) => {
