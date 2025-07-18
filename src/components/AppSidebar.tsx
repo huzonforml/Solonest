@@ -1,5 +1,5 @@
 
-import { Calendar, Users, FileText, User, Palette, BarChart3, Home, Receipt, UserCheck, ChevronDown, CalendarDays } from "lucide-react";
+import { Users, FileText, User, Palette, BarChart3, Home, Receipt, UserCheck, ChevronDown, CalendarDays } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,

@@ -6,7 +6,6 @@ import { ActivityEditModal } from "./ActivityEditModal";
 interface CalendarWeekProps {
   currentDate: Date;
   activeFilters: {
-    appointments: boolean;
     contracts: boolean;
     invoices: boolean;
     leads: boolean;
@@ -14,11 +13,11 @@ interface CalendarWeekProps {
 }
 
 export const CalendarWeek = ({ currentDate, activeFilters }: CalendarWeekProps) => {
-  const { appointments, contracts, invoices, leads } = useCRM();
+  const { contracts, invoices, leads } = useCRM();
   const [selectedActivity, setSelectedActivity] = useState<CalendarActivity | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   
-  const activities = getCalendarActivities(appointments, contracts, invoices, leads, activeFilters);
+  const activities = getCalendarActivities(contracts, invoices, leads, activeFilters);
 
   // Get the start of the week (Sunday)
   const startOfWeek = new Date(currentDate);
@@ -80,7 +79,6 @@ export const CalendarWeek = ({ currentDate, activeFilters }: CalendarWeekProps) 
                       key={idx}
                       onClick={() => handleActivityClick(activity)}
                       className={`text-xs px-2 py-2 rounded-md cursor-pointer hover:opacity-80 transition-opacity ${
-                        activity.type === 'appointment' ? 'bg-blue-100 text-blue-800' :
                         activity.type === 'contract' ? 'bg-green-100 text-green-800' :
                         activity.type === 'invoice' ? 'bg-orange-100 text-orange-800' :
                         'bg-purple-100 text-purple-800'

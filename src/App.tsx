@@ -7,7 +7,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import Index from "./pages/Index";
-import Appointments from "./pages/Appointments";
 import Leads from "./pages/Leads";
 import Contracts from "./pages/Contracts";
 import PortfolioMaker from "./pages/PortfolioMaker";
@@ -34,7 +33,6 @@ const App = () => (
             <Route path="/" element={<Login />} />
             <Route path="/home" element={<Layout><Index /></Layout>} />
             <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
-            <Route path="/appointments" element={<Layout><Appointments /></Layout>} />
             <Route path="/leads" element={<Layout><Leads /></Layout>} />
             <Route path="/clients" element={<Layout><Clients /></Layout>} />
             <Route path="/calendar" element={<Layout><Calendar /></Layout>} />

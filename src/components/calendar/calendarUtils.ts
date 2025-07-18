@@ -1,5 +1,5 @@
 
-import { Appointment, Contract, Invoice, Lead } from "@/contexts/CRMContext";
+import { Contract, Invoice, Lead } from "@/contexts/CRMContext";
 
 export interface CalendarActivity {
   id: string;
@@ -7,40 +7,22 @@ export interface CalendarActivity {
   description?: string;
   date: string;
   time?: string;
-  type: 'appointment' | 'contract' | 'invoice' | 'lead';
+  type: 'contract' | 'invoice' | 'lead';
   status?: string;
   notes?: string;
 }
 
 export const getCalendarActivities = (
-  appointments: Appointment[],
   contracts: Contract[],
   invoices: Invoice[],
   leads: Lead[],
   activeFilters: {
-    appointments: boolean;
     contracts: boolean;
     invoices: boolean;
     leads: boolean;
   }
 ): CalendarActivity[] => {
   const activities: CalendarActivity[] = [];
-
-  // Add appointments
-  if (activeFilters.appointments) {
-    appointments.forEach(appointment => {
-      activities.push({
-        id: `appointment-${appointment.id}`,
-        title: `${appointment.type}: ${appointment.client}`,
-        description: `Status: ${appointment.status}${appointment.notes ? ` | ${appointment.notes}` : ''}`,
-        date: appointment.date,
-        time: appointment.time,
-        type: 'appointment',
-        status: appointment.status,
-        notes: appointment.notes,
-      });
-    });
-  }
 
   // Add contract events
   if (activeFilters.contracts) {

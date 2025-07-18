@@ -6,7 +6,6 @@ import { ActivityEditModal } from "./ActivityEditModal";
 interface CalendarDayProps {
   currentDate: Date;
   activeFilters: {
-    appointments: boolean;
     contracts: boolean;
     invoices: boolean;
     leads: boolean;
@@ -14,11 +13,11 @@ interface CalendarDayProps {
 }
 
 export const CalendarDay = ({ currentDate, activeFilters }: CalendarDayProps) => {
-  const { appointments, contracts, invoices, leads } = useCRM();
+  const { contracts, invoices, leads } = useCRM();
   const [selectedActivity, setSelectedActivity] = useState<CalendarActivity | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   
-  const activities = getCalendarActivities(appointments, contracts, invoices, leads, activeFilters);
+  const activities = getCalendarActivities(contracts, invoices, leads, activeFilters);
 
   const dateStr = currentDate.toISOString().split('T')[0];
   const dayActivities = activities.filter(activity => activity.date === dateStr);
@@ -59,7 +58,6 @@ export const CalendarDay = ({ currentDate, activeFilters }: CalendarDayProps) =>
                     key={idx}
                     onClick={() => handleActivityClick(activity)}
                     className={`text-sm px-3 py-2 rounded-md cursor-pointer hover:opacity-80 transition-opacity ${
-                      activity.type === 'appointment' ? 'bg-blue-100 text-blue-800' :
                       activity.type === 'contract' ? 'bg-green-100 text-green-800' :
                       activity.type === 'invoice' ? 'bg-orange-100 text-orange-800' :
                       'bg-purple-100 text-purple-800'
@@ -91,7 +89,6 @@ export const CalendarDay = ({ currentDate, activeFilters }: CalendarDayProps) =>
                         key={idx}
                         onClick={() => handleActivityClick(activity)}
                         className={`text-sm px-3 py-2 rounded-md mb-1 cursor-pointer hover:opacity-80 transition-opacity ${
-                          activity.type === 'appointment' ? 'bg-blue-100 text-blue-800' :
                           activity.type === 'contract' ? 'bg-green-100 text-green-800' :
                           activity.type === 'invoice' ? 'bg-orange-100 text-orange-800' :
                           'bg-purple-100 text-purple-800'

@@ -1,12 +1,12 @@
 
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from "recharts";
-import { Calendar, Users, FileText, TrendingUp, DollarSign, Clock, UserCheck, Receipt, AlertTriangle } from "lucide-react";
+import { Users, FileText, TrendingUp, DollarSign, Clock, UserCheck, Receipt, AlertTriangle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useCRM } from "../contexts/CRMContext";
 
 const Dashboard = () => {
-  const { leads, appointments, contracts, clients, invoices } = useCRM();
+  const { leads, contracts, clients, invoices } = useCRM();
 
   // Analytics data
   const leadsByStatus = [
@@ -18,12 +18,12 @@ const Dashboard = () => {
   ];
 
   const monthlyData = [
-    { month: 'Jan', leads: 12, appointments: 8, contracts: 3 },
-    { month: 'Feb', leads: 19, appointments: 12, contracts: 5 },
-    { month: 'Mar', leads: 15, appointments: 9, contracts: 4 },
-    { month: 'Apr', leads: 22, appointments: 15, contracts: 7 },
-    { month: 'May', leads: 28, appointments: 18, contracts: 9 },
-    { month: 'Jun', leads: 25, appointments: 16, contracts: 8 }
+    { month: 'Jan', leads: 12, contracts: 3 },
+    { month: 'Feb', leads: 19, contracts: 5 },
+    { month: 'Mar', leads: 15, contracts: 4 },
+    { month: 'Apr', leads: 22, contracts: 7 },
+    { month: 'May', leads: 28, contracts: 9 },
+    { month: 'Jun', leads: 25, contracts: 8 }
   ];
 
   const revenueData = [
@@ -39,11 +39,6 @@ const Dashboard = () => {
   const totalInvoices = invoices.reduce((sum, invoice) => sum + parseFloat(invoice.amount.replace(/[^\d.]/g, '')), 0);
   const paidInvoices = invoices.filter(inv => inv.status === 'Paid').reduce((sum, invoice) => sum + parseFloat(invoice.amount.replace(/[^\d.]/g, '')), 0);
   const overdueInvoices = invoices.filter(inv => inv.status === 'Overdue').length;
-
-  const upcomingAppointments = appointments
-    .filter(apt => new Date(apt.date) >= new Date() && new Date(apt.date) <= new Date(Date.now() + 7 * 24 * 60 * 60 * 1000))
-    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
-    .slice(0, 5);
 
   const recentLeads = leads
     .filter(lead => new Date(lead.createdAt) >= new Date(Date.now() - 30 * 24 * 60 * 60 * 1000))
@@ -63,7 +58,7 @@ const Dashboard = () => {
       </div>
 
       {/* Enhanced KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card className="neo-card">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-neo-900">Total Leads</CardTitle>
@@ -85,17 +80,6 @@ const Dashboard = () => {
           <CardContent>
             <div className="text-2xl font-bold text-neo-800">{clients.length}</div>
             <p className="text-xs text-neo-500">Active clients</p>
-          </CardContent>
-        </Card>
-
-        <Card className="neo-card">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-neo-700">Appointments</CardTitle>
-            <Calendar className="h-4 w-4 text-neo-500" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-neo-800">{appointments.length}</div>
-            <p className="text-xs text-neo-500">Scheduled meetings</p>
           </CardContent>
         </Card>
 
@@ -201,7 +185,6 @@ const Dashboard = () => {
                 <YAxis />
                 <Tooltip />
                 <Bar dataKey="leads" fill="#3b82f6" name="Leads" />
-                <Bar dataKey="appointments" fill="#10b981" name="Appointments" />
                 <Bar dataKey="contracts" fill="#f59e0b" name="Contracts" />
               </BarChart>
             </ResponsiveContainer>
@@ -228,36 +211,7 @@ const Dashboard = () => {
       </Card>
 
       {/* Activity Sections */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <Card className="neo-card">
-          <CardHeader>
-            <CardTitle className="text-neo-800 flex items-center gap-2">
-              <Clock className="w-5 h-5" />
-              Upcoming Activities
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              {upcomingAppointments.length > 0 ? (
-                upcomingAppointments.map((appointment) => (
-                  <div key={appointment.id} className="flex items-center justify-between p-3 neo-card">
-                    <div>
-                      <p className="font-medium text-neo-800">{appointment.client}</p>
-                      <p className="text-sm text-neo-600">{appointment.type}</p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-sm font-medium text-neo-700">{appointment.date}</p>
-                      <p className="text-xs text-neo-500">{appointment.time}</p>
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <p className="text-neo-600 text-center py-4">No upcoming activities</p>
-              )}
-            </div>
-          </CardContent>
-        </Card>
-
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card className="neo-card">
           <CardHeader>
             <CardTitle className="text-neo-800 flex items-center gap-2">
