@@ -12,7 +12,7 @@ const Index = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-        <Link to="/leads" className="neo-card p-6 hover:shadow-neo-outset transition-all duration-200 group">
+        <Link to="/leads" className="neo-card border border-gray-300 p-6 hover:shadow-neo-outset transition-all duration-200 group">
           <div className="flex items-center gap-4 mb-4">
             <div className="neo-card p-3 group-hover:shadow-neo-pressed transition-all duration-200">
               <Users className="w-8 h-8 text-neo-600" />
