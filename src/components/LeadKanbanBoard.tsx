@@ -162,7 +162,7 @@ export function LeadKanbanBoard() {
 
       {/* Desktop Kanban Board - hidden on mobile */}
       <div className="hidden lg:block">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 overflow-x-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 overflow-x-auto">
           {statusColumns.map((status) => {
             const statusLeads = getLeadsByStatus(status);
             const statusValue = statusLeads.reduce((sum, lead) => {
@@ -172,7 +172,7 @@ export function LeadKanbanBoard() {
 
             return (
               <div key={status} className="min-w-[320px]">
-                <div className="neo-card p-5 p-x-2 mb-4 bg-stage-bg border border-gray-100">
+                <div className="neo-card p-3 mb-4 bg-stage-bg border border-gray-100">
                   <div className="flex justify-between items-center mb-3">
                     <h3 className="text-lg font-bold text-primary-heading">{status}</h3>
                     <Badge variant="secondary" className={`${statusColors[status]} font-semibold px-3 py-1`}>
